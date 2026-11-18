@@ -1,0 +1,24 @@
+code: ups
+name: UPS
+logo: brand/logos/ups.png
+chapters:
+  - Install the app
+  - Connect your UPS account
+  - Set up live UPS rates
+  - Print UPS shipping labels
+  - Schedule UPS pickups
+  - Fulfil & track orders
+hook_bubbles:
+  - Which UPS rate do I charge?
+  - Printing labels one by one…
+  - When's the pickup?
+  - Customs forms again?
+  - Where's my package?
+  - Copy-pasting tracking numbers…
+  - Is this address right?
+  - Did UPS get my order?
+title_chips: [Real-time rates, Labels in bulk, Pickups, Tracking]
+recap_line: "Your UPS shipping, automated."
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+support_url: www.pluginhive.com/support
+voice: { provider: TBD, voice_id: TBD }

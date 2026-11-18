@@ -1,0 +1,4 @@
+# Copy scene blocks from carriers/ups/shots.yaml and adapt. Spec: docs/SHOT_SPEC.md
+scenes:
+  - { id: hook, type: hook }
+  - { id: intro, type: title, shopify_logo: true }

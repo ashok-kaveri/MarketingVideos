@@ -1,0 +1,24 @@
+code: CHANGE_ME
+name: <CARRIER>
+logo: brand/logos/CHANGE_ME.png
+chapters:
+  - Install the app
+  - Connect your <CARRIER> account
+  - Set up live <CARRIER> rates
+  - Print <CARRIER> shipping labels
+  - Schedule <CARRIER> pickups
+  - Fulfil & track orders
+hook_bubbles:
+  - Which <CARRIER> rate do I charge?
+  - Printing labels one by one…
+  - When's the pickup?
+  - Customs forms again?
+  - Where's my package?
+  - Copy-pasting tracking numbers…
+  - Is this address right?
+  - Did <CARRIER> get my order?
+title_chips: [Real-time rates, Labels in bulk, Pickups, Tracking]
+recap_line: "Your <CARRIER> shipping, automated."
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+support_url: www.pluginhive.com/support
+voice: { provider: TBD, voice_id: TBD }

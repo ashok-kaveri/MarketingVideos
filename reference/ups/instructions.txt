@@ -1,0 +1,411 @@
+UPS SHOPIFY SETUP VIDEO — EDITING INSTRUCTIONS (per file, in video order)
+=========================================================================
+General rules for every file unless noted otherwise:
+- Every scene starts full screen. Zooms are smooth: zoom in, hold, zoom out.
+- No highlight boxes, no label tags, no click ripples.
+- Replace "QA-MultiCarrier Shipping Label" + old icon everywhere with "PH MultiCarrier Shipping Label" + official icon
+  (use: PH_Multi_Carrier_Shipping_Label_name(for entire video).png).
+- PluginHive logo top-right throughout; Shopify logo only where Shopify is mentioned.
+- Narration: regenerate the full voiceover from "ups shopify setup script.txt" in the same voice.
+- Files marked (old) are already in the current video: keep their existing edit, blur and zoom treatment.
+- Highlights: All the highlights should be done in the same color, you can pick the shapes between rectangle, square or circle as per the visuals. If zoom is involved, highlights should be done only after zooming in and when on hold, should not be done while zooming in or out.
+
+
+
+
+-------------------------------------------------------------------------
+01) 1_app_installation_MCSL.mov (old)
+FILES:  1_app_installation_MCSL.mov
+SCRIPT: "First, install the PH MultiCarrier Shipping Label app from the Shopify App Store."
+SHOW:   App Store listing, Install click, install permissions dialog.
+ZOOM:   No.
+BLUR:   None.
+NOTES:  Same edit as current video (loading screens cut).
+
+
+-------------------------------------------------------------------------
+02) 2_address_app_main_menu.png
+FILES:  2_address_app_main_menu.png
+SCRIPT: "Once it's installed, the app automatically sets your Shopify store address as your shipping origin."
+SHOW:   App main menu open: Settings > Address > Shop Location.
+ZOOM:   no.
+HIGHLIGHT: Address > Shop Location
+BLUR:   Phone number and address details visible behind the menu.
+NOTES:  Short scene, leads straight into the address form.
+
+
+-------------------------------------------------------------------------
+03) 3_address.png
+FILES:  3_address.png
+SCRIPT: "You can edit this address..."
+SHOW:   "From Address" form (Address Name, Company, Email, City, Country, Person Name, Phone, Street Address, Postal code).
+ZOOM:   No.
+BLUR:   Email ID and phone number.
+NOTES:  Hold long enough for the details to read clearly.
+
+
+-------------------------------------------------------------------------
+04) 4_add_address_app_main_menu.png
+FILES:  4_add_address_app_main_menu.png
+SCRIPT: "...or add more shipping locations if you need to."
+SHOW:   App main menu: the "+" next to Address (add a new shipping location).
+ZOOM:   Yes — on Address and its "+" icon.
+HIGHLIGHT: "+" icon (after zooming in)
+BLUR:   Phone number visible behind the menu.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+05) 5_Carrier_Search.mov (old)
+FILES:  5_Carrier_Search.mov
+SCRIPT: "Next, it's time to connect your UPS account. To do that, go to the Carriers tab in the app's main menu."
+SHOW:   Menu > Carriers, carrier list page.
+ZOOM:   No.
+HIGHLIGHT: Carriers
+BLUR:   None.
+NOTES:  Same as current video ("Stop Screen Recording" label removed).
+
+
+-------------------------------------------------------------------------
+06) 6_UPS_account_integration.mov (old — trimmed version)
+FILES:  6_UPS_account_integration.mov
+SCRIPT: "Select UPS and click on Add Account. ... Click Submit, and you'll see a registration successful message confirming that your UPS account is connected to the app."
+SHOW:   Select UPS, Add Account, Login, account number, UPS login (email, terms, Continue), password, Log In, Submit, Registration successful.
+ZOOM:   Yes — on the UPS account number entry only (as in current video).
+BLUR:   Only UPS account number, UPS username/email, password field.
+NOTES:  This file is shorter than the original (126 s vs 131 s) and ends on "Registration successful",
+        without the "Connected to your UPS account" page. Typing parts sped up as before.
+
+
+-------------------------------------------------------------------------
+07) 7_packaging_app_main_menu.png
+FILES:  7_packaging_app_main_menu.png
+SCRIPT: "Now, let's see how real-time UPS shipping rates are displayed to buyers at checkout. But first, let's set up a few things that make those rates accurate. It all starts with the right packaging."
+SHOW:   App main menu: Shipping > Packaging.
+ZOOM:   no.
+HIGHLIGHT: Shipping > Packaging
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+08) 8_weight_based_packaging.png
+FILES:  8_weight_based_packaging.png
+SCRIPT: "Shipping light items? Go weight-based, and rates are calculated from the product's weight."
+SHOW:   Packaging Method = Weight Based Packing, Max Weight field.
+ZOOM:   Yes — on Packaging Details (Packing Method field).
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+09) 9_Box_based_packaging.png
+FILES:  9_Box_based_packaging.png
+SCRIPT: "Shipping bulkier boxes? Go box-based, and rates factor in both weight and dimensions, so you never undercharge for space."
+SHOW:   Packing Method = Box Packing, plus the Boxes table (Medium Box, Small Box).
+ZOOM:   Yes — Packing Method field first, then slide down to the Boxes table.
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+10) 10_other_packing_options.png
+FILES:  10_other_packing_options.png
+SCRIPT: "But that's not all. The app offers several more packaging options, so you can choose the one that fits your store best."
+SHOW:   Packing Method dropdown open (Weight Based, Box, Stack, Quantity Based, Weight & Volume Based).
+ZOOM:   no
+HIGHLIGHT: the packing option field name and dropdown list in one box highlight.
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+11) 11_ups_carrier_app_main_menu.png
+FILES:  11_ups_carrier_app_main_menu.png
+SCRIPT: "Prefer UPS's own packaging instead?"
+SHOW:   App main menu: Carriers > UPS.
+ZOOM:   no
+HIGHLIGHT: Carriers > UPS.
+BLUR:   UPS account number field behind the menu.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+12) 12_UPS_packing_boxes.png
+FILES:  12_UPS_packing_boxes.png
+SCRIPT: "You can select UPS boxes too from the UPS Carrier details."
+SHOW:   UPS carrier "Other Details": Packaging Type dropdown open (Custom Packing, Tube, PAK, UPS 25KG Box, UPS 10KG Box, ...).
+ZOOM:   Yes — on the Packaging Type dropdown.
+HIGHLIGHT: other details and Packaging Type with the dropdown list separately.
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+13) 13_all_products_app_main_menu.png
+FILES:  13_all_products_app_main_menu.png
+SCRIPT: "Add your product dimensions in the app's Products section."
+SHOW:   App main menu: Products > All Products.
+ZOOM:   no.
+HIGHLIGHT: Products > All Products
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+14) 14_product_weight_dimensions(first).png
+FILES:  14_product_weight_dimensions(first).png
+SCRIPT: (continues) "Add your product dimensions in the app's Products section."
+SHOW:   "Edit Shipping" pop-up: Weight 0.5 lbs, Dimensions 8 x 18 x 36 in.
+ZOOM:   Yes — on the Weight and Dimensions fields.
+HIGHLIGHT: Weight 0.5 lbs, Dimensions 8 x 18 x 36 in pop-up
+BLUR:   None.
+NOTES: Show this BEFORE the "(second)" file. Alphabetically it sorts after "(second)", so follow the
+        (first)/(second) labels, not the file sort order.
+
+
+-------------------------------------------------------------------------
+15) 14_default_product_weight_dimensions(second).png
+FILES:  14_default_product_weight_dimensions(second).png
+SCRIPT: "If any product is missing its weight or dimensions, the app falls back to default values, so your rates keep working at checkout."
+SHOW:   Store settings "Other Details": Default Weight (0.1) and Default Dimensions (1 x 1 x 1).
+ZOOM:   Yes — on the Default Weight and Default Dimensions fields.
+HIGHLIGHT: Default Weight (0.1) and Default Dimensions (1 x 1 x 1).
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+16) 15_Rates_automation_app_main_menu(left-side).png + 15_Label_automation_app_main_menu(right-side).png
+FILES:  15_Rates_automation_app_main_menu(left-side).png (left)
+        15_Label_automation_app_main_menu(right-side).png (right)
+SCRIPT: "Next, the UPS services."
+SHOW:   Side-by-side split screen. Left: menu Shipping Rates > Rate Automation (checkout rates).
+        Right: menu Automation > Setup (label printing).
+ZOOM:   Yes — each side on its highlighted menu item.
+HIGHLIGHT: Shipping Rates > Rate Automation in one box, Automation > Setup in another box. 
+BLUR:   None.
+NOTES:  Split-screen pair; add small captions "UPS Checkout rates" (left) and "UPS Label printing" (right).
+
+
+-------------------------------------------------------------------------
+17) 16_rate_automation_ups_services(left-side).png + 16_Label_automation_ups_services(right-side).png
+FILES:  16_rate_automation_ups_services(left-side).png (left)
+        16_Label_automation_ups_services(right-side).png (right)
+SCRIPT: "By default, the app enables all UPS services for your Shopify orders, but you can pick just the ones you prefer, for both checkout rates and label printing."
+SHOW:   Side-by-side split screen. Both show the Carrier/Service dropdown with the UPS services list open.
+ZOOM:   Yes — on the UPS services dropdown on both sides.
+HIGHLIGHT: UPS services dropdown ON BOTH SIDES in two different boxes
+BLUR:   None.
+NOTES:  Same split-screen layout and captions as 16.
+
+
+-------------------------------------------------------------------------
+18) 17_UPS_negotiated_rates_ups_surepost.png
+FILES:  17_UPS_negotiated_rates_ups_surepost.png
+SCRIPT: "If you have UPS negotiated rates on your account, you can enable those too. You can also turn on UPS Ground Saver, formerly known as SurePost, an affordable option for lightweight residential shipments."
+SHOW:   UPS carrier settings: "Negotiated Rates" checkbox (bottom-left) and "Enable SurePost" checkbox (top-right).
+ZOOM:   Yes — two zooms: Negotiated Rates first, then Enable SurePost, timed with the narration.
+HIGHLIGHT: Negotiated Rates first, then Enable SurePost
+BLUR:   UPS account number field; Emergency Contact Number.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+19) 18_rates_automation_special_services(left-side).png + 18_label_automation_special_services(right-side).png
+FILES:  18_rates_automation_special_services(left-side).png (left)
+        18_label_automation_special_services(right-side).png (right)
+SCRIPT: "Want extra protection? Add shipping insurance and signature confirmation, and enable them for both checkout rates and label printing in just a few clicks."
+SHOW:   Side-by-side split screen. Both show "Add Insurance/Extra Cover: Enable" and the "Add Delivery Confirmation"
+        dropdown (Signature Confirmation, Adult Signature Confirmation).
+ZOOM:   Yes — on the Insurance and Delivery Confirmation rows on both sides.
+HIGHLIGHT: Yes — on the Insurance and Delivery Confirmation rows on both sides.
+BLUR:   None.
+NOTES:  Same split-screen layout and captions as 16.
+
+
+-------------------------------------------------------------------------
+20) 19_Placing_Shopify_Order.mov (old)
+FILES:  19_Placing_Shopify_Order.mov
+SCRIPT: "With everything set up, let's head to the Shopify checkout page. When buyers enter their shipping address, ... shipping origin and destination."
+SHOW:   Storefront, checkout, UPS rates with delivery dates, thank-you page.
+ZOOM:   No.
+HIGHLIGHT: shipping methods
+BLUR:   Email, phone, card details, saved-card pop-up (scroll-tracked).
+NOTES:  Hold on the shipping methods about 1.6 s longer, as in the current video.
+
+
+-------------------------------------------------------------------------
+21) 20_Single_Shipping_Label_Generation.mov (old)
+FILES:  20_Single_Shipping_Label_Generation.mov
+SCRIPT: "Next, I'll show you how to print UPS shipping labels on Shopify. ... click on the Print Documents dropdown and select Label."
+SHOW:   Open order, review, Generate Label, Print Documents > Label, label PDF.
+ZOOM:   No.
+HIGHLIGHT: shipping address, packaging summary, shipping method chosen, shipping cost of that shipping method chosen. Keep the highlight in sync with the voiceover and do not remove the highlight, retain it till the last highlight that is till shipping cost highlight ends.
+BLUR: No.
+NOTES:  remove the horizontal "Shipping address > Packaging details > Shipping method > Shipping cost" review line. 
+
+
+-------------------------------------------------------------------------
+22) 21_Edit_shipping_address_order_package.mov (old)
+FILES:  21_Edit_shipping_address_order_package.mov
+SCRIPT: "Need to make changes before generating the label? ... follow the same process to generate the shipping label."
+SHOW:   Recipient edit, address pop-up, Packages pop-up.
+ZOOM:   Yes — on the Packages pop-up only (as in current video).
+HIGHLIGHT: Address pop-up and Packages pop-up.
+BLUR:   Phone and email in the address pop-up and recipient panel.
+NOTES:  Now plays BEFORE bulk (new order). Keep the "Need to make changes?" statement card.
+
+
+-------------------------------------------------------------------------
+23) 22_Bulk_Shipping_Label_Generation.mov (old)
+FILES:  22_Bulk_Shipping_Label_Generation.mov
+SCRIPT: "Shipping in bulk? Just select multiple orders, click Generate Labels, and print them all at once."
+SHOW:   Select orders, Generate Labels, label batch, Print > Label, label PDFs.
+ZOOM:   No.
+BLUR:   None (no blur on label PDFs).
+NOTES:  Keep the "Shipping in bulk?" statement card.
+
+
+-------------------------------------------------------------------------
+24) 23_all_products_app_main_menu.png
+FILES:  23_all_products_app_main_menu.png
+SCRIPT: "Shipping internationally? First, make sure your products have their customs information added, so duties and taxes are calculated accurately."
+SHOW:   App main menu: Products > All Products.
+ZOOM:   Yes — on Products > All Products in the menu.
+HIGHLIGHT: Products > All Products
+BLUR:   None.
+NOTES:  Keep the "Shipping internationally?" statement card before this file.
+
+
+-------------------------------------------------------------------------
+25) 24_product_customs_information.png
+FILES:  24_product_customs_information.png
+SCRIPT: "Add three key details: the HS code, the country of manufacture, and the product description."
+SHOW:   "Edit Customs" pop-up: Harmonization Code 6109.10, Country of Manufacture, Custom Description.
+ZOOM:   Yes — on the three fields, timed with the narration.
+HIGHLIGHT: HS code, the country of manufacture, and the custom description. Keep the highlight in sync with the voiceover.
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+26) 25_all_products_import_export.png
+FILES:  25_all_products_import_export.png
+SCRIPT: "You can fill these in product by product, or export a CSV, update everything in bulk, and import it back."
+SHOW:   All Products list with Import CSV / Export CSV buttons.
+ZOOM:   Yes — on the Import CSV / Export CSV buttons.
+HIGHLIGHT: Import CSV / Export CSV buttons
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+27) 26_duties_taxes_payer.png
+FILES:  26_duties_taxes_payer.png
+SCRIPT: "You can also choose who pays the duties and taxes."
+SHOW:   UPS carrier "Other Details": Duties And Taxes Payer dropdown open (Sender, Receiver, Third Party).
+ZOOM:   Yes — on the Duties And Taxes Payer dropdown.
+HIGHLIGHT: Duties And Taxes Payer dropdown
+BLUR:   UPS account number field(only if visible).
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+28) 27_print_settings_app_main_menu.png
+FILES:  27_print_settings_app_main_menu.png
+SCRIPT: "Then, in the print settings,"
+SHOW:   App main menu: General Settings > Print Settings.
+ZOOM:   Yes — on Print Settings in the menu.
+HIGHLIGHT: General Settings > Print Settings
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+29) 28_print_settings_commercial_invoice_labels.png
+FILES:  28_print_settings_commercial_invoice_labels.png
+SCRIPT: "...make sure the commercial invoice and any other required customs documents are enabled. The app also supports Paperless Invoice, so your shipment data is sent to customs electronically."
+SHOW:   Print Settings: Label and Commercial Invoice checked.
+ZOOM:   Yes — on the Label / Commercial Invoice checkboxes.
+BLUR:   None.
+NOTES:  No screenshot for Paperless Invoice: show the animated "Paperless Invoice" card from the current video here.
+
+
+-------------------------------------------------------------------------
+30) 29_International_Shipping_Label_Generation.mov (old)
+FILES:  29_International_Shipping_Label_Generation.mov
+SCRIPT: "Once that's in place, generate the label as usual, and the app creates a commercial invoice along with the shipping label for customs clearance."
+SHOW:   International order, Generate Label, Print Documents > All, label + commercial invoice PDF.
+ZOOM:   No.
+BLUR:  no blur on Recipient email and phone; no blur on the PDF or the dropdown list.
+NOTES:  The Paperless Invoice card moves to file 29 (above), not here.
+
+
+-------------------------------------------------------------------------
+31) 30_Request_pickup.mov (old)
+FILES:  30_Request_pickup.mov
+SCRIPT: "Once the labels are printed, go ahead and paste them on your packages. Then, select all the orders ... If you've already opted for daily pickups, you can skip this step."
+SHOW:   Select orders, Request Pickup, Pickup tab and details.
+ZOOM:   No.
+BLUR:   None.
+NOTES:  Keep the "Label on. Ready to ship." box animation for the "paste them on your packages" line.
+
+
+-------------------------------------------------------------------------
+32) 31_Print_ups_manifest.png
+FILES:  31_Print_ups_manifest.png
+SCRIPT: "The app also lets you download the manifest..."
+SHOW:   Manifest tab: list of manifests with the Print icon.
+ZOOM:   Yes — on the Print icon column.
+HIGHLIGHT: Print icon IN THE FIRST row
+BLUR:   None.
+NOTES:  —
+
+
+-------------------------------------------------------------------------
+33) 32_ups_manifest.png
+FILES:  32_ups_manifest.png
+SCRIPT: "...that the UPS pickup agent needs."
+SHOW:   Print dialog with the UPS manifest preview.
+ZOOM:   Yes — on the manifest preview.
+BLUR:   None.
+NOTES:  This image is taller (2880 x 1624) than the others; fit it in the same frame.
+
+
+-------------------------------------------------------------------------
+34) 33_Order_fulfillment.mov (old)
+FILES:  33_Order_fulfillment.mov
+SCRIPT: "Once your packages are picked up, go ahead and mark the orders as fulfilled."
+SHOW:   Select orders, Mark as Fulfilled, status changes to Fulfilled.
+ZOOM:   Yes — on the Status column showing "Fulfilled".
+HIGHLIGHT: Status column showing "Fulfilled".
+BLUR:   None.
+NOTES:  Almost same as current video.
+
+
+-------------------------------------------------------------------------
+35) 34_Shopify_Shipment_Tracking_and_Emails.mov (old)
+FILES:  34_Shopify_Shipment_Tracking_and_Emails.mov
+SCRIPT: "This will automatically sync the tracking details to your Shopify orders and send an email to your customers with the tracking number, allowing them to track their shipments."
+SHOW:   Shopify orders "Tracking added", order page, timeline emails.
+ZOOM:   Yes — on "Tracking added", then the whole timeline.
+BLUR:   Customer email, phone, timeline emails.
+NOTES:  Same as current video. 
+
+
+-------------------------------------------------------------------------
+36) 35_Shopify_MultiCarrier_UPS_Tracking_Delivered.png (old)
+FILES:  35_Shopify_MultiCarrier_UPS_Tracking_Delivered.png
+SCRIPT: "You can also monitor all your shipments from the app's built-in tracking dashboard."
+SHOW:   Tracking dashboard with the "Delivered" panel.
+ZOOM:   Yes — on the Delivered panel (unchanged).
+HIGHLIGHT: "Delivered" panel
+BLUR:   None.
+NOTES:  Same as current video.
+
+
+-------------------------------------------------------------------------
+OUTRO (no file)
+SCRIPT: "That's how you can automate your UPS shipping on Shopify ... We'll be happy to assist you."
+NOTES:  Keep the current recap, app card ($9/month, 659 reviews), support card and end card.

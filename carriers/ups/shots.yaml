@@ -1,0 +1,250 @@
+# UPS pilot — converted from reference/ups/instructions.txt (marketing, 36 files).
+# Box names resolve from capture/<source>.boxes.json. "(old)" files keep the reference edit
+# (trims/speed/blur) — encode them here once the raw files are in capture/.
+scenes:
+  - { id: hook, type: hook }
+  - { id: intro, type: title, shopify_logo: true }
+
+  # ── 01 Install the app ─────────────────────────────────────────
+  - id: install
+    chapter: 1
+    type: screen
+    source: 1_app_installation_MCSL.mov
+    shopify_logo: true
+    video: { trim: [0, null], cut: [] }        # TODO: loading-screen cuts from reference edit
+  - id: address-menu
+    chapter: 1
+    type: screen
+    source: 2_address_app_main_menu.png
+    highlights: [{ target: menu.address_shop_location }]
+    blur: [bg.phone, bg.address]
+  - id: address-form
+    chapter: 1
+    type: screen
+    source: 3_address.png
+    blur: [form.email, form.phone]
+    hold: 1.2                                   # "hold long enough for details to read"
+  - id: address-add
+    chapter: 1
+    type: screen
+    source: 4_add_address_app_main_menu.png
+    zoom: menu.address
+    highlights: [{ target: menu.address_plus }]
+    blur: [bg.phone]
+
+  # ── 02 Connect your UPS account ────────────────────────────────
+  - id: carriers-tab
+    chapter: 2
+    type: screen
+    source: 5_Carrier_Search.mov
+    highlights: [{ target: menu.carriers }]
+  - id: ups-connect
+    chapter: 2
+    type: screen
+    source: 6_UPS_account_integration.mov
+    zoom: { target: ups.account_number, on: "Enter your UPS account number", until: "Connect to Your UPS Account" }
+    blur: [ups.account_number, ups.username, ups.password]
+    video: { speed: [] }                        # TODO: typing segments at 4x, as in reference
+
+  # ── 03 Set up live UPS rates ───────────────────────────────────
+  - id: packaging-menu
+    chapter: 3
+    type: screen
+    source: 7_packaging_app_main_menu.png
+    highlights: [{ target: menu.shipping_packaging }]
+  - id: packaging-weight
+    chapter: 3
+    type: screen
+    source: 8_weight_based_packaging.png
+    zoom: packaging.details
+  - id: packaging-box
+    chapter: 3
+    type: screen
+    source: 9_Box_based_packaging.png
+    zoom: [{ target: packaging.method }, { target: packaging.boxes_table, on: "weight and dimensions" }]
+  - id: packaging-options
+    chapter: 3
+    type: screen
+    source: 10_other_packing_options.png
+    highlights: [{ target: packaging.method_with_dropdown }]
+  - id: ups-carrier-menu
+    chapter: 3
+    type: screen
+    source: 11_ups_carrier_app_main_menu.png
+    highlights: [{ target: menu.carriers_ups }]
+    blur: [bg.ups_account_number]
+  - id: ups-boxes
+    chapter: 3
+    type: screen
+    source: 12_UPS_packing_boxes.png
+    zoom: ups.packaging_type
+    highlights:
+      - { target: ups.other_details }
+      - { target: ups.packaging_type_dropdown, on: "UPS boxes" }
+  - id: products-menu
+    chapter: 3
+    type: screen
+    source: 13_all_products_app_main_menu.png
+    highlights: [{ target: menu.products_all }]
+  - id: product-dimensions
+    chapter: 3
+    type: screen
+    source: "14_product_weight_dimensions(first).png"
+    zoom: product.weight_dimensions
+    highlights: [{ target: product.weight_dimensions }]
+  - id: default-dimensions
+    chapter: 3
+    type: screen
+    source: "14_default_product_weight_dimensions(second).png"
+    zoom: store.default_weight_dimensions
+    highlights: [{ target: store.default_weight_dimensions }]
+  - id: services-menu
+    chapter: 3
+    type: split
+    left:  { source: "15_Rates_automation_app_main_menu(left-side).png", caption: "UPS Checkout rates", zoom: menu.rate_automation, highlights: [{ target: menu.rate_automation }] }
+    right: { source: "15_Label_automation_app_main_menu(right-side).png", caption: "UPS Label printing", zoom: menu.automation_setup, highlights: [{ target: menu.automation_setup }] }
+  - id: services-list
+    chapter: 3
+    type: split
+    left:  { source: "16_rate_automation_ups_services(left-side).png", caption: "UPS Checkout rates", zoom: services.dropdown, highlights: [{ target: services.dropdown }] }
+    right: { source: "16_Label_automation_ups_services(right-side).png", caption: "UPS Label printing", zoom: services.dropdown, highlights: [{ target: services.dropdown }] }
+  - id: negotiated-surepost
+    chapter: 3
+    type: screen
+    source: 17_UPS_negotiated_rates_ups_surepost.png
+    zoom:
+      - { target: ups.negotiated_rates }
+      - { target: ups.enable_surepost, on: "UPS Ground Saver" }
+    highlights:
+      - { target: ups.negotiated_rates, until: "UPS Ground Saver" }
+      - { target: ups.enable_surepost, on: "UPS Ground Saver" }
+    blur: [ups.account_number, ups.emergency_contact_number]
+  - id: special-services
+    chapter: 3
+    type: split
+    left:  { source: "18_rates_automation_special_services(left-side).png", caption: "UPS Checkout rates", zoom: special.insurance_signature, highlights: [{ target: special.insurance_signature }] }
+    right: { source: "18_label_automation_special_services(right-side).png", caption: "UPS Label printing", zoom: special.insurance_signature, highlights: [{ target: special.insurance_signature }] }
+  - id: checkout
+    chapter: 3
+    type: screen
+    source: 19_Placing_Shopify_Order.mov
+    shopify_logo: true
+    highlights: [{ target: checkout.shipping_methods, on: "UPS shipping rates" }]
+    blur: [checkout.email, checkout.phone, checkout.card, checkout.saved_card_popup]   # time-bound boxes
+    hold: 1.6
+
+  # ── 04 Print UPS shipping labels ───────────────────────────────
+  - id: single-label
+    chapter: 4
+    type: screen
+    source: 20_Single_Shipping_Label_Generation.mov
+    shopify_logo: true
+    highlights:   # cumulative: each stays until the last one ends
+      - { target: order.shipping_address, on: "shipping address", until: "Once you've reviewed" }
+      - { target: order.packaging_summary, on: "packaging details", until: "Once you've reviewed" }
+      - { target: order.shipping_method, on: "shipping method", until: "Once you've reviewed" }
+      - { target: order.shipping_cost, on: "shipping cost", until: "Once you've reviewed" }
+  - { id: edit-card, chapter: 4, type: statement, text: "Need to make changes?" }
+  - id: edit-before-label
+    chapter: 4
+    type: screen
+    source: 21_Edit_shipping_address_order_package.mov
+    zoom: { target: packages.popup, on: "update package details" }
+    highlights:
+      - { target: address.popup, on: "edit the shipping address" }
+      - { target: packages.popup, on: "update package details" }
+    blur: [address.phone, address.email, recipient.phone, recipient.email]
+  - { id: bulk-card, chapter: 4, type: statement, text: "Shipping in bulk?" }
+  - id: bulk-labels
+    chapter: 4
+    type: screen
+    source: 22_Bulk_Shipping_Label_Generation.mov
+  - { id: intl-card, chapter: 4, type: statement, text: "Shipping internationally?" }
+  - id: intl-products-menu
+    chapter: 4
+    type: screen
+    source: 23_all_products_app_main_menu.png
+    zoom: menu.products_all
+    highlights: [{ target: menu.products_all }]
+  - id: customs-info
+    chapter: 4
+    type: screen
+    source: 24_product_customs_information.png
+    zoom: customs.fields
+    highlights:
+      - { target: customs.hs_code, on: "HS code" }
+      - { target: customs.country_of_manufacture, on: "country of manufacture" }
+      - { target: customs.description, on: "product description" }
+  - id: csv-import-export
+    chapter: 4
+    type: screen
+    source: 25_all_products_import_export.png
+    zoom: products.csv_buttons
+    highlights: [{ target: products.csv_buttons }]
+  - id: duties-payer
+    chapter: 4
+    type: screen
+    source: 26_duties_taxes_payer.png
+    zoom: ups.duties_payer_dropdown
+    highlights: [{ target: ups.duties_payer_dropdown }]
+    blur: [ups.account_number?]                 # "?" = only if the box exists
+  - id: print-settings-menu
+    chapter: 4
+    type: screen
+    source: 27_print_settings_app_main_menu.png
+    zoom: menu.print_settings
+    highlights: [{ target: menu.general_print_settings }]
+  - id: print-settings
+    chapter: 4
+    type: screen
+    source: 28_print_settings_commercial_invoice_labels.png
+    zoom: print.label_ci_checkboxes
+  - { id: paperless, chapter: 4, type: callout, kind: paperless_invoice, over: print-settings }
+  - id: intl-label
+    chapter: 4
+    type: screen
+    source: 29_International_Shipping_Label_Generation.mov
+
+  # ── 05 Schedule UPS pickups ────────────────────────────────────
+  - { id: label-ready, chapter: 5, type: callout, kind: label_ready }
+  - id: request-pickup
+    chapter: 5
+    type: screen
+    source: 30_Request_pickup.mov
+  - id: manifest-list
+    chapter: 5
+    type: screen
+    source: 31_Print_ups_manifest.png
+    zoom: manifest.print_column
+    highlights: [{ target: manifest.print_icon_row1 }]
+  - id: manifest-preview
+    chapter: 5
+    type: screen
+    source: 32_ups_manifest.png                # 2880x1624, contain-fit handles it
+    zoom: manifest.preview
+
+  # ── 06 Fulfil & track orders ───────────────────────────────────
+  - id: fulfil
+    chapter: 6
+    type: screen
+    source: 33_Order_fulfillment.mov
+    zoom: { target: orders.status_column, on: "fulfilled" }
+    highlights: [{ target: orders.status_column, on: "fulfilled" }]
+  - id: tracking-sync
+    chapter: 6
+    type: screen
+    source: 34_Shopify_Shipment_Tracking_and_Emails.mov
+    shopify_logo: true
+    zoom: [{ target: shopify.tracking_added }, { target: shopify.timeline, on: "send an email" }]
+    blur: [shopify.customer_email, shopify.customer_phone, shopify.timeline_emails]
+  - id: tracking-dashboard
+    chapter: 6
+    type: screen
+    source: 35_Shopify_MultiCarrier_UPS_Tracking_Delivered.png
+    zoom: tracking.delivered_panel
+    highlights: [{ target: tracking.delivered_panel }]
+
+  # ── Outro ──────────────────────────────────────────────────────
+  - { id: recap, type: recap, shopify_logo: true }
+  - { id: app-card, type: app_card }
+  - { id: support-card, type: support_card }

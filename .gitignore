@@ -1,0 +1,27 @@
+node_modules/
+.DS_Store
+__pycache__/
+*.pyc
+# heavy binaries: keep out of git, back them up separately
+*.mp4
+*.mov
+*.wav
+*.mp3
+reference/**/reference_final.mp4
+carriers/*/capture/*
+!carriers/*/capture/.gitkeep
+!carriers/*/capture/*.boxes.json
+carriers/*/audio/*
+!carriers/*/audio/.gitkeep
+!carriers/*/audio/*.timings.json
+carriers/*/renders/*
+!carriers/*/renders/.gitkeep
+engine/out/
+engine/public/carriers
+.env
+engine/build/
+carriers/ups/capture/4_add_address_app_main_menu.png.boxes.json
+carriers/ups/capture/11_ups_carrier_app_main_menu.png.boxes.json
+engine/public/
+engine/src/generated/
+carriers/*/review/stills/
