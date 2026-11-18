@@ -18,4 +18,5 @@ PH MultiCarrier Shipping Label app.
 ## Status
 | Carrier | Brief | Script | Shots | Capture | VO | Draft | Final |
 |---|---|---|---|---|---|---|---|
-| UPS (pilot) | ✅ | ✅ (marketing) | ✅ | ⏳ raw files needed | ⏳ voice TBD | layout preview ✅ | — |
+| PostNord | ✅ | 📝 draft v1 — marketing review | ✅ | ⏳ demo store | ⏳ | layout ✅ (~5:00) | — |
+| UPS (reference, done by marketing) | ✅ | ✅ (marketing) | ✅ | ⏳ raw files needed | ⏳ voice TBD | layout preview ✅ | — |

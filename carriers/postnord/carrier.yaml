@@ -1,0 +1,24 @@
+code: postnord
+name: PostNord
+logo: brand/logos/postnord.png
+chapters:
+  - Install the app
+  - Connect your PostNord account
+  - Set up live PostNord rates
+  - Print PostNord shipping labels
+  - Schedule PostNord pickups
+  - Fulfil & track orders
+hook_bubbles:
+  - Which service point did they pick?
+  - Printing labels one by one…
+  - CN22 or CN23 again?
+  - When's the pickup?
+  - Where's my parcel?
+  - Rek with FE… or UA?
+  - Copy-pasting tracking numbers…
+  - How do I send a return?
+title_chips: [Service points, CN22 / CN23, Rek & add-ons, Returns]
+recap_line: "Your PostNord shipping, automated."
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+support_url: www.pluginhive.com/support
+voice: { provider: TBD, voice_id: TBD }   # same voice as UPS video

@@ -83,9 +83,9 @@ function placeholder(name) {
     const label = `MISSING CAPTURE  ${name}`.replace(/[:'\\]/g, ' ');
     try {
       execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'lavfi', '-i', 'color=c=0xe9edf2:s=1920x1080', '-frames:v', '1',
-        '-vf', `drawtext=text='${label}':fontcolor=0x5a6b85:fontsize=44:x=(w-text_w)/2:y=(h-text_h)/2`, out]);
+        '-vf', `drawtext=text='${label}':fontcolor=0x5a6b85:fontsize=44:x=(w-text_w)/2:y=(h-text_h)/2`, out], { stdio: 'ignore' });
     } catch {
-      execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'lavfi', '-i', 'color=c=0xe9edf2:s=1920x1080', '-frames:v', '1', out]);
+      execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'lavfi', '-i', 'color=c=0xe9edf2:s=1920x1080', '-frames:v', '1', out], { stdio: 'ignore' });
     }
   }
   return { src: `placeholders/${safe}`, kind: 'image', w: 1920, h: 1080, placeholder: true };
