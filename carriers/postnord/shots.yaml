@@ -1,11 +1,11 @@
-# PostNord — shot list. Spec: docs/SHOT_SPEC.md. Narration: script.md.
-# Capture files (capture/) are the shot list for the Playwright flows + the few manual recordings.
-# Demo store: Sweden origin (SEK), production PH MultiCarrier Shipping Label app, PostNord connected.
+# PostNord — shot list v2 (verified scope: see brief.md). Spec: docs/SHOT_SPEC.md. Narration: script.md.
+# 5 chapters. No live-rates/checkout-rates, pickup, manifest or customs-document scenes.
+# Demo store: Sweden origin, production PH MultiCarrier Shipping Label app, PostNord connected.
 scenes:
   - { id: hook, type: hook }
   - { id: intro, type: title, shopify_logo: true }
 
-  # ── 01 Install the app (generic app screens, same for every carrier) ──
+  # ── 01 Install the app (generic app screens) ──────────────────────────
   - id: install
     chapter: 1
     type: screen
@@ -29,7 +29,7 @@ scenes:
     zoom: menu.address
     highlights: [{ target: menu.address_plus }]
 
-  # ── 02 Connect your PostNord account (all in-app, no carrier portal) ──
+  # ── 02 Connect your PostNord account (in-app form, no carrier portal) ──
   - id: carriers-tab
     chapter: 2
     type: screen
@@ -47,7 +47,7 @@ scenes:
       - { target: postnord.production_toggle, on: "switch on production mode" }
     blur: [postnord.party_id, postnord.account_number?, postnord.bank_details?]
 
-  # ── 03 Set up live PostNord rates ──────────────────────────────────────
+  # ── 03 Set up PostNord shipping ────────────────────────────────────────
   - id: packaging-menu
     chapter: 3
     type: screen
@@ -64,25 +64,46 @@ scenes:
     source: 09_product_weight_dimensions.png
     zoom: product.weight_dimensions
     highlights: [{ target: product.weight_dimensions }]
-  - id: services-split
-    chapter: 3
-    type: split
-    left:  { source: 10_rate_automation_postnord_services.png,  caption: "PostNord Checkout rates", zoom: services.dropdown, highlights: [{ target: services.dropdown }] }
-    right: { source: 10_label_automation_postnord_services.png, caption: "PostNord Label printing", zoom: services.dropdown, highlights: [{ target: services.dropdown }] }
-  - { id: servicepoint-card, chapter: 3, type: statement, text: "Delivering to a service point?" }
-  - id: service-point-checkout
+  - id: services
     chapter: 3
     type: screen
-    source: 11_checkout_service_point.mov
+    source: 10_label_automation_postnord_services.png   # label automation only — no checkout-rates panel
+    zoom: services.dropdown
+    highlights: [{ target: services.dropdown }]
+  - { id: servicepoint-card, chapter: 3, type: statement, text: "Delivering to a service point?" }
+  - id: service-point-enable
+    chapter: 3
+    type: screen
+    source: 11_postnord_other_details_service_point.png
+    zoom: postnord.other_details
+    highlights: [{ target: postnord.service_point_toggle, on: "turn on PostNord Service Point" }]
+  - id: service-point-cart-block
+    chapter: 3
+    type: screen
+    source: 12_theme_editor_pickup_locations_block.mov
     shopify_logo: true
     highlights:
-      - { target: checkout.postnord_rates, on: "live PostNord rates", until: "choose the service point" }
-      - { target: checkout.service_point_picker, on: "choose the service point" }
-    blur: [checkout.email, checkout.phone, checkout.card?]
+      - { target: theme.pickup_locations_block, on: "Pick-up Locations block" }
+      - { target: theme.carrier_postnord, on: "select PostNord" }
+  - id: service-point-buyer
+    chapter: 3
+    type: screen
+    source: 13_cart_service_point_selection.mov
+    shopify_logo: true
+    highlights:
+      - { target: cart.country_postal_code, on: "country and postal code", until: "pick the PostNord service point" }
+      - { target: cart.service_point_list, on: "pick the PostNord service point" }
+  - id: service-point-order
+    chapter: 3
+    type: screen
+    source: 14_order_local_pickup_location_details.png
+    zoom: order.local_pickup_location_details
+    highlights: [{ target: order.local_pickup_location_details, on: "Local Pickup Location Details" }]
+    blur: [order.customer_email?, order.customer_phone?]
   - id: service-point-default
     chapter: 3
     type: screen
-    source: 12_automation_default_service_point.png
+    source: 15_automation_default_service_point.png
     zoom: automation.action_row
     highlights: [{ target: automation.default_service_point_action, on: "automation rule" }]
 
@@ -90,7 +111,7 @@ scenes:
   - id: labels-intro
     chapter: 4
     type: screen
-    source: 13_single_label_generation.mov
+    source: 16_single_label_generation.mov
     highlights:
       - { target: order.shipping_address, on: "address", until: "click Generate Label" }
       - { target: order.packaging_summary, on: "package", until: "click Generate Label" }
@@ -99,7 +120,7 @@ scenes:
   - id: addons-dialog
     chapter: 4
     type: screen
-    source: 14_postnord_additional_settings.png
+    source: 17_postnord_additional_settings.png
     zoom: dialog.additional_services
     highlights:
       - { target: addon.insurance, on: "insurance" }
@@ -107,7 +128,7 @@ scenes:
   - id: rek-services
     chapter: 4
     type: screen
-    source: 15_rek_fe_ua.png
+    source: 18_rek_fe_ua.png
     zoom: dialog.additional_services
     highlights:
       - { target: order.service_rek, on: "PostNord Rek" }
@@ -116,67 +137,65 @@ scenes:
   - id: addons-automation
     chapter: 4
     type: screen
-    source: 16_automation_add_postnord_special_services.png
+    source: 19_automation_add_postnord_special_services.png
     zoom: automation.action_row
     highlights: [{ target: automation.add_special_services_action, on: "Add PostNord special services" }]
   - id: bulk-labels
     chapter: 4
     type: screen
-    source: 17_bulk_label_generation.mov
+    source: 20_bulk_label_generation.mov
     video: { speed: [] }                       # fill 4x ranges after capture
   - { id: returns-card, chapter: 4, type: statement, text: "Handling returns?" }
   - id: returns
     chapter: 4
     type: screen
-    source: 18_return_label.mov
+    source: 21_return_label.mov
     zoom: { target: settings.return_label_type, on: "return label type", until: "then generate" }
     highlights: [{ target: settings.return_label_type, on: "return label type" }]
   - { id: intl-card, chapter: 4, type: statement, text: "Shipping outside the EU?" }
   - id: cn22-cn23-settings
     chapter: 4
     type: screen
-    source: 19_cn22_cn23_category_setting.png
+    source: 22_cn22_cn23_category_setting.png
     zoom: settings.cn22_cn23_category
     highlights: [{ target: settings.cn22_cn23_category, on: "category of your items" }]
   - id: cn23-details
     chapter: 4
     type: screen
-    source: 20_cn23_document_details.png
+    source: 23_cn23_document_details.png
     zoom: dialog.cn23_details
     highlights:
-      - { target: dialog.cn23_details_checkbox, on: "add CN23 details" }
+      - { target: dialog.cn23_details_checkbox, on: "CN23 details" }
       - { target: dialog.quarantine_checkbox, on: "quarantine comments" }
+  - id: tax-ids
+    chapter: 4
+    type: screen
+    source: 24_tax_ids.png
+    zoom: settings.tax_ids
+    highlights: [{ target: settings.tax_ids, on: "tax IDs" }]
   - id: intl-label
     chapter: 4
     type: screen
-    source: 21_international_label_cn22.mov
-    highlights: [{ target: pdf.customs_declaration, on: "CN22 or CN23 is created" }]
+    source: 25_international_label.mov
 
-  # ── 05 Schedule PostNord pickups (no manifest scene — PostNord has none) ──
-  - { id: label-ready, chapter: 5, type: callout, kind: label_ready }
-  - id: request-pickup
+  # ── 05 Fulfil & track orders ──────────────────────────────────────────
+  - id: fulfil
     chapter: 5
     type: screen
-    source: 22_request_pickup.mov
-
-  # ── 06 Fulfil & track orders ──────────────────────────────────────────
-  - id: fulfil
-    chapter: 6
-    type: screen
-    source: 23_order_fulfillment.mov
+    source: 26_order_fulfillment.mov
     zoom: { target: orders.status_column, on: "fulfilled" }
     highlights: [{ target: orders.status_column, on: "fulfilled" }]
   - id: tracking-sync
-    chapter: 6
+    chapter: 5
     type: screen
-    source: 24_shopify_tracking_and_emails.mov
+    source: 27_shopify_tracking_and_emails.mov
     shopify_logo: true
     zoom: [{ target: shopify.tracking_added }, { target: shopify.timeline, on: "emails your customers" }]
     blur: [shopify.customer_email, shopify.customer_phone, shopify.timeline_emails]
   - id: tracking-dashboard
-    chapter: 6
+    chapter: 5
     type: screen
-    source: 25_tracking_dashboard_delivered.png
+    source: 28_tracking_dashboard_delivered.png
     zoom: tracking.delivered_panel
     highlights: [{ target: tracking.delivered_panel }]
 

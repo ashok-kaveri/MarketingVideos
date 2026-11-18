@@ -4,15 +4,14 @@ logo: brand/logos/postnord.png
 chapters:
   - Install the app
   - Connect your PostNord account
-  - Set up live PostNord rates
+  - Set up PostNord shipping
   - Print PostNord shipping labels
-  - Schedule PostNord pickups
   - Fulfil & track orders
 hook_bubbles:
   - Which service point did they pick?
   - Printing labels one by one…
   - CN22 or CN23 again?
-  - When's the pickup?
+  - Which PostNord service again?
   - Where's my parcel?
   - Rek with FE… or UA?
   - Copy-pasting tracking numbers…

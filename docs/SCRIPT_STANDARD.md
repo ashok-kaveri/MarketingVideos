@@ -16,6 +16,15 @@
 Total target: 6–8 minutes. Chapters that a carrier does not support are dropped, never faked
 (e.g. no pickup API → chapter 05 becomes "Hand over at drop-off" or is removed).
 
+## Scope rule (most important)
+Show only what **our app supports for this carrier**, never what the carrier itself offers.
+Every feature must be backed by a working merchant flow: an official PluginHive KB article, or a
+code path that is not behind an off-by-default flag. A function or field existing in the code is NOT
+proof (e.g. PostNord `getRates` exists but returns the cart total, so there are no live rates).
+`brief.md` must hold a ✅/❌ support matrix with evidence before the script is written, and product
+must confirm it. The six-chapter skeleton is a maximum: drop chapters the app does not support
+(PostNord has no rates, pickup or manifest, so it has 5 chapters).
+
 ## Voice and tone
 - Second person, present tense, friendly-confident. "You can…", "Just select…".
 - One idea per sentence; ≤ 22 words per sentence.
