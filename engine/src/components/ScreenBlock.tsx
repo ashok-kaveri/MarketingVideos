@@ -7,6 +7,7 @@ interface Box { x: number; y: number; w: number; h: number }
 interface Cam { s: number; tx: number; ty: number }
 const IDENT: Cam = { s: 1, tx: 0, ty: 0 };
 const ease = Easing.inOut(Easing.cubic);
+const patchFont = `-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Helvetica Neue", Arial, sans-serif`;
 
 /** contain-fit of the media inside the box (box-local coords) */
 function fit(m: Media, box: Box) {
@@ -55,16 +56,21 @@ const MediaLayer: React.FC<{ m: Media; style: React.CSSProperties }> = ({ m, sty
     <>
       {segs.map((s, i) => (
         <Sequence key={i} from={s.outFrom} durationInFrames={s.outTo - s.outFrom} layout="none">
-          <OffthreadVideo src={staticFile(m.src)} startFrom={Math.round(s.srcFrom * FPS)} endAt={Math.round(s.srcTo * FPS)} playbackRate={s.rate} muted style={style} />
+          {s.freeze ? (
+            <Freeze frame={0}>
+              <OffthreadVideo src={staticFile(m.src)} startFrom={Math.round(s.srcFrom * FPS)} muted style={style} />
+            </Freeze>
+          ) : (
+            <OffthreadVideo src={staticFile(m.src)} startFrom={Math.round(s.srcFrom * FPS)} endAt={Math.round(s.srcTo * FPS)} playbackRate={s.rate} muted style={style} />
+          )}
         </Sequence>
       ))}
       {last && (
+        // hold the clip's last frame for the rest of the scene
         <Sequence from={last.outTo} layout="none">
-          <Sequence from={last.outFrom - last.outTo} layout="none">
-            <Freeze frame={last.outTo - last.outFrom - 1}>
-              <OffthreadVideo src={staticFile(m.src)} startFrom={Math.round(last.srcFrom * FPS)} endAt={Math.round(last.srcTo * FPS)} playbackRate={last.rate} muted style={style} />
-            </Freeze>
-          </Sequence>
+          <Freeze frame={0}>
+            <OffthreadVideo src={staticFile(m.src)} startFrom={Math.max(0, Math.round((last.freeze ? last.srcFrom : last.srcTo) * FPS) - 1)} muted style={style} />
+          </Freeze>
         </Sequence>
       )}
     </>
@@ -87,6 +93,18 @@ export const ScreenBlock: React.FC<{ block: Block; box: Box; radius?: number }> 
         <div style={{ position: 'absolute', left: f.ox, top: f.oy, width: f.dw, height: f.dh, borderRadius: radius, overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.45)' }}>
           <MediaLayer m={m} style={{ ...mediaStyle, left: 0, top: 0 }} />
         </div>
+        {(block.patches ?? [])
+          .filter((p) => frame >= p.from && frame < p.to)
+          .map((p, i) => {
+            const [x, y, w, h] = toBox(p.rect, f);
+            const fs = (p.size ?? p.rect[3] * 0.5) * f.k;
+            return (
+              <div key={`p${i}`} style={{ position: 'absolute', left: x, top: y, width: w, height: h, background: p.bg, display: 'flex', alignItems: 'center', justifyContent: p.align === 'center' ? 'center' : 'flex-start', gap: fs * 0.55, paddingLeft: (p.padX ?? 0) * f.k, overflow: 'hidden', whiteSpace: 'nowrap', boxSizing: 'border-box' }}>
+                {p.icon && <Img src={staticFile(p.icon)} style={{ height: fs * 1.45, width: fs * 1.45, borderRadius: fs * 0.3, flex: 'none' }} />}
+                {p.text && <span style={{ fontFamily: patchFont, fontSize: fs, fontWeight: p.weight, color: p.color, overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.text}</span>}
+              </div>
+            );
+          })}
         {block.blurs
           .filter((b) => frame >= b.from && frame < b.to)
           .map((b, i) => {

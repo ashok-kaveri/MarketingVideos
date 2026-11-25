@@ -1,0 +1,72 @@
+[
+{
+"word": "If",
+"start": 0.0,
+"end": 0.14
+},
+{
+"word": "you",
+"start": 0.14,
+"end": 0.3
+},
+{
+"word": "ship",
+"start": 0.3,
+"end": 0.52
+},
+{
+"word": "light",
+"start": 0.52,
+"end": 0.76
+},
+{
+"word": "items,",
+"start": 0.76,
+"end": 1.24
+},
+{
+"word": "the",
+"start": 1.74,
+"end": 1.78
+},
+{
+"word": "weight-based",
+"start": 1.78,
+"end": 2.28
+},
+{
+"word": "option",
+"start": 2.28,
+"end": 2.72
+},
+{
+"word": "generates",
+"start": 2.72,
+"end": 3.3
+},
+{
+"word": "labels",
+"start": 3.3,
+"end": 3.7
+},
+{
+"word": "using",
+"start": 3.7,
+"end": 4.12
+},
+{
+"word": "each",
+"start": 4.12,
+"end": 4.46
+},
+{
+"word": "product's",
+"start": 4.46,
+"end": 4.98
+},
+{
+"word": "weight.",
+"start": 4.98,
+"end": 5.14
+}
+]

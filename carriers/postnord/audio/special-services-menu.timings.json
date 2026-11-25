@@ -1,0 +1,82 @@
+[
+{
+"word": "If",
+"start": 0.0,
+"end": 0.12
+},
+{
+"word": "a",
+"start": 0.12,
+"end": 0.22
+},
+{
+"word": "particular",
+"start": 0.22,
+"end": 0.68
+},
+{
+"word": "order",
+"start": 0.68,
+"end": 1.02
+},
+{
+"word": "needs",
+"start": 1.02,
+"end": 1.38
+},
+{
+"word": "extra",
+"start": 1.38,
+"end": 1.82
+},
+{
+"word": "services,",
+"start": 1.82,
+"end": 2.42
+},
+{
+"word": "click",
+"start": 3.02,
+"end": 3.14
+},
+{
+"word": "Add",
+"start": 3.14,
+"end": 3.44
+},
+{
+"word": "PostNord",
+"start": 3.44,
+"end": 4.06
+},
+{
+"word": "Special",
+"start": 4.06,
+"end": 4.42
+},
+{
+"word": "Services",
+"start": 4.42,
+"end": 4.92
+},
+{
+"word": "from",
+"start": 4.92,
+"end": 5.24
+},
+{
+"word": "the",
+"start": 5.24,
+"end": 5.42
+},
+{
+"word": "order",
+"start": 5.42,
+"end": 5.6
+},
+{
+"word": "grid",
+"start": 5.6,
+"end": 5.96
+}
+]

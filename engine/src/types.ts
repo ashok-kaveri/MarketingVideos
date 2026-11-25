@@ -1,6 +1,7 @@
 export type Rect = [number, number, number, number]; // x, y, w, h in source pixels
 
-export interface Segment { srcFrom: number; srcTo: number; rate: number; outFrom: number; outTo: number } // src in seconds, out in frames
+/** src in seconds, out in frames. freeze: hold the frame at srcFrom for the whole segment. */
+export interface Segment { srcFrom: number; srcTo: number; rate: number; outFrom: number; outTo: number; freeze?: boolean }
 export interface Media {
   src: string;            // path under public/
   kind: 'image' | 'video';
@@ -9,8 +10,11 @@ export interface Media {
   videoFrames?: number;   // total output frames of the video part
 }
 export interface TimedRect { rect: Rect; from: number; to: number } // frames, scene-relative
+/** Opaque cover painted over the capture (e.g. replace a wrong app name). Rect in source pixels, frames scene-relative. */
+export interface Patch extends TimedRect { bg: string; text?: string; color?: string; size?: number; weight?: number; icon?: string; padX?: number; align?: 'left' | 'center' }
 export interface Block {
   media: Media;
+  patches?: Patch[];
   caption?: string;
   zooms: TimedRect[];
   highlights: TimedRect[];
@@ -28,6 +32,7 @@ export interface Scene {
   chapter?: number;
   shopifyLogo?: boolean;
   audio?: string;         // path under public/
+  audioFrom?: number;     // frame the narration starts at (the scene's lead-in)
   text?: string;
   kind?: string;
   block?: Block;
@@ -40,5 +45,5 @@ export interface Carrier {
   appCard: { price: string; rating: string; reviews: number; developer: string };
   supportUrl: string;
 }
-export interface Assets { pluginhiveLogo?: string; shopifyLogo?: string; appIcon?: string; music?: string }
+export interface Assets { pluginhiveLogo?: string; shopifyLogo?: string; shopifyBag?: string; appIcon?: string; music?: string }
 export interface VideoProps { carrier: Carrier; scenes: Scene[]; totalFrames: number; assets: Assets; [k: string]: unknown }

@@ -1,0 +1,92 @@
+[
+{
+"word": "Just",
+"start": 0.0,
+"end": 0.22
+},
+{
+"word": "select",
+"start": 0.22,
+"end": 0.58
+},
+{
+"word": "multiple",
+"start": 0.58,
+"end": 1.02
+},
+{
+"word": "orders,",
+"start": 1.02,
+"end": 1.54
+},
+{
+"word": "click",
+"start": 1.98,
+"end": 2.18
+},
+{
+"word": "Generate",
+"start": 2.18,
+"end": 2.74
+},
+{
+"word": "Labels,",
+"start": 2.74,
+"end": 3.12
+},
+{
+"word": "and",
+"start": 3.44,
+"end": 3.66
+},
+{
+"word": "the",
+"start": 3.66,
+"end": 3.78
+},
+{
+"word": "labels",
+"start": 3.78,
+"end": 4.04
+},
+{
+"word": "are",
+"start": 4.04,
+"end": 4.3
+},
+{
+"word": "created",
+"start": 4.3,
+"end": 4.68
+},
+{
+"word": "for",
+"start": 4.68,
+"end": 4.98
+},
+{
+"word": "all",
+"start": 4.98,
+"end": 5.26
+},
+{
+"word": "of",
+"start": 5.26,
+"end": 5.4
+},
+{
+"word": "them",
+"start": 5.4,
+"end": 5.52
+},
+{
+"word": "at",
+"start": 5.52,
+"end": 5.7
+},
+{
+"word": "once.",
+"start": 5.7,
+"end": 5.96
+}
+]

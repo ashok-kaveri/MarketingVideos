@@ -26,12 +26,16 @@ export const PluginHiveLogo: React.FC<{ src?: string; dark?: boolean }> = ({ src
   </div>
 );
 
-export const ShopifyLogo: React.FC<{ src?: string }> = ({ src }) => (
-  <div style={{ position: 'absolute', right: 270, top: 30, height: 34, display: 'flex', alignItems: 'center' }}>
+/** Shopify logo next to PluginHive's. brand/logos/shopify.png when present, else the bag icon + the name in white. */
+export const ShopifyLogo: React.FC<{ src?: string; bag?: string }> = ({ src, bag }) => (
+  <div style={{ position: 'absolute', right: 270, top: 30, height: 34, display: 'flex', alignItems: 'center', gap: 9 }}>
     {src ? (
       <Img src={staticFile(src)} style={{ height: 34 }} />
     ) : (
-      <span style={{ fontFamily: font, fontWeight: 700, fontSize: 20, color: '#95bf47' }}>shopify</span>
+      <>
+        {bag && <Img src={staticFile(bag)} style={{ height: 32 }} />}
+        <span style={{ fontFamily: font, fontWeight: 700, fontSize: 23, letterSpacing: -0.2, color: color.text }}>Shopify</span>
+      </>
     )}
   </div>
 );

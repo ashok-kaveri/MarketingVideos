@@ -1,0 +1,212 @@
+[
+{
+"word": "If",
+"start": 0.0,
+"end": 0.12
+},
+{
+"word": "something",
+"start": 0.12,
+"end": 0.42
+},
+{
+"word": "needs",
+"start": 0.42,
+"end": 0.78
+},
+{
+"word": "changing",
+"start": 0.78,
+"end": 1.32
+},
+{
+"word": "before",
+"start": 1.32,
+"end": 1.68
+},
+{
+"word": "you",
+"start": 1.68,
+"end": 1.86
+},
+{
+"word": "generate",
+"start": 1.86,
+"end": 2.22
+},
+{
+"word": "the",
+"start": 2.22,
+"end": 2.4
+},
+{
+"word": "label,",
+"start": 2.4,
+"end": 2.66
+},
+{
+"word": "you",
+"start": 3.12,
+"end": 3.26
+},
+{
+"word": "can",
+"start": 3.26,
+"end": 3.38
+},
+{
+"word": "edit",
+"start": 3.38,
+"end": 3.62
+},
+{
+"word": "the",
+"start": 3.62,
+"end": 3.82
+},
+{
+"word": "shipping",
+"start": 3.82,
+"end": 4.12
+},
+{
+"word": "address",
+"start": 4.12,
+"end": 4.46
+},
+{
+"word": "from",
+"start": 4.46,
+"end": 4.72
+},
+{
+"word": "the",
+"start": 4.72,
+"end": 4.92
+},
+{
+"word": "order's",
+"start": 4.92,
+"end": 5.2
+},
+{
+"word": "Recipient",
+"start": 5.2,
+"end": 5.64
+},
+{
+"word": "section",
+"start": 5.64,
+"end": 6.16
+},
+{
+"word": "and",
+"start": 6.16,
+"end": 6.66
+},
+{
+"word": "update",
+"start": 6.66,
+"end": 7.04
+},
+{
+"word": "the",
+"start": 7.04,
+"end": 7.2
+},
+{
+"word": "box,",
+"start": 7.2,
+"end": 7.54
+},
+{
+"word": "weight,",
+"start": 7.94,
+"end": 8.2
+},
+{
+"word": "or",
+"start": 8.68,
+"end": 8.78
+},
+{
+"word": "dimensions",
+"start": 8.78,
+"end": 9.2
+},
+{
+"word": "from",
+"start": 9.2,
+"end": 9.62
+},
+{
+"word": "the",
+"start": 9.62,
+"end": 9.76
+},
+{
+"word": "packaging",
+"start": 9.76,
+"end": 10.1
+},
+{
+"word": "block.",
+"start": 10.1,
+"end": 10.5
+},
+{
+"word": "Once",
+"start": 11.26,
+"end": 11.44
+},
+{
+"word": "your",
+"start": 11.44,
+"end": 11.6
+},
+{
+"word": "changes",
+"start": 11.6,
+"end": 11.9
+},
+{
+"word": "are",
+"start": 11.9,
+"end": 12.14
+},
+{
+"word": "saved,",
+"start": 12.14,
+"end": 12.56
+},
+{
+"word": "generate",
+"start": 12.92,
+"end": 13.22
+},
+{
+"word": "the",
+"start": 13.22,
+"end": 13.5
+},
+{
+"word": "label",
+"start": 13.5,
+"end": 13.78
+},
+{
+"word": "the",
+"start": 13.78,
+"end": 13.98
+},
+{
+"word": "same",
+"start": 13.98,
+"end": 14.22
+},
+{
+"word": "way.",
+"start": 14.22,
+"end": 14.5
+}
+]

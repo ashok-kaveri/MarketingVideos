@@ -25,3 +25,15 @@ carriers/ups/capture/11_ups_carrier_app_main_menu.png.boxes.json
 engine/public/
 engine/src/generated/
 carriers/*/review/stills/
+carriers/*/review/explore/
+# capture: links to the test repo (capture/setup.sh), saved Shopify sessions, scratch output
+capture/.mcsl
+capture/node_modules
+capture/auth-*.json
+capture/.out/
+capture/_qa_test/
+.claude/settings.local.json
+# debug screenshots the test repo login writes to the working dir
+capture/login-timeout.png
+capture/login-error.png
+capture/password-entry-failed.png

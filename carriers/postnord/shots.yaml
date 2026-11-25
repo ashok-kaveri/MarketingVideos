@@ -1,203 +1,336 @@
-# PostNord — shot list v2 (verified scope: see brief.md). Spec: docs/SHOT_SPEC.md. Narration: script.md.
-# 5 chapters. No live-rates/checkout-rates, pickup, manifest or customs-document scenes.
-# Demo store: Sweden origin, production PH MultiCarrier Shipping Label app, PostNord connected.
+# PostNord — shot list v3 (marketing script + fixes; scope: brief.md). Spec: docs/SHOT_SPEC.md. Narration: script.md.
+# 5 chapters. No checkout-rates, pickup or manifest scenes.
+# v4 (marketing review 1): personal data replaced with demo text (patches) instead of blur where the screen is still;
+# clips with `video.sync` move on the spoken word (engine: SHOT_SPEC "sync").
+# Captures: marketing raw files (reference/PostNord_SetUp_video,s(Raw)), copied + boxed by review/setup_captures.py.
+# They were recorded in the QA app, so every app screen carries the `*qa` patches that paint the production
+# name + icon over the title bar and the Shopify sidebar entry. Re-capture in the production app to drop them.
+
+x-qa: &qa
+  - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+  - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+x-qa-dim: &qa_dim   # address screens with the app menu open: page dimmed to 50 %, demo data instead of blur
+  - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+  - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+  - { target: demo.person, text: Erik Lindqvist, bg: "#7f7f7f", color: "#000000", size: 28, weight: 400, pad_x: 12 }
+  - { target: demo.phone, text: "2125550147", bg: "#7f7f7f", color: "#000000", size: 28, weight: 400, pad_x: 12 }
+  - { target: demo.email_behind, bg: "#7f7f7f" }
+x-qa-stepper: &qa_stepper
+  - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+  - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+  - { target: qa.stepper_carrier, text: PostNord, bg: "#ffffff", color: "#303030", size: 21, weight: 500, pad_x: 40 }
+
 scenes:
   - { id: hook, type: hook }
   - { id: intro, type: title, shopify_logo: true }
 
-  # ── 01 Install the app (generic app screens) ──────────────────────────
+  # ── 01 Install the app ────────────────────────────────────────────────
   - id: install
     chapter: 1
     type: screen
     source: 01_app_installation.mov
     shopify_logo: true
+    video:
+      trim: [0, 37.9]
+      cut: [[3.6, 14], [23.6, 31]]
+      speed: [{ from: 14, to: 23.6, rate: 3 }, { from: 31, to: 37.9, rate: 2 }]
+    patches:
+      - { target: qa.sidebar, text: PH MultiCarrier Shippin…, icon: true, bg: "#1a1a1a", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
   - id: address-menu
     chapter: 1
     type: screen
     source: 02_address_app_main_menu.png
-    highlights: [{ target: menu.address_shop_location }]
+    shopify_logo: true
+    patches: *qa_dim
+    highlights: [{ target: menu.address_shop_location, on: "shipping origin" }]
   - id: address-form
     chapter: 1
     type: screen
     source: 03_address.png
-    blur: [form.email?, form.phone?]
-    hold: 1.2
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+      - { target: demo.person, text: Erik Lindqvist, bg: "#ffffff", color: "#000000", size: 28, weight: 400, pad_x: 12 }
+      - { target: demo.phone, text: "2125550147", bg: "#ffffff", color: "#000000", size: 28, weight: 400, pad_x: 12 }
+      - { target: demo.email, text: orders@yourstore.com, bg: "#ffffff", color: "#000000", size: 28, weight: 400, pad_x: 12 }
   - id: address-add
     chapter: 1
     type: screen
     source: 04_add_address_app_main_menu.png
+    patches: *qa_dim
     zoom: menu.address
     highlights: [{ target: menu.address_plus }]
 
-  # ── 02 Connect your PostNord account (in-app form, no carrier portal) ──
+  # ── 02 Connect your PostNord account ──────────────────────────────────
   - id: carriers-tab
     chapter: 2
     type: screen
     source: 05_carriers_menu.png
-    highlights: [{ target: menu.carriers }]
+    patches: *qa
+    highlights: [{ target: menu.carriers, on: "Carriers tab" }]
   - id: postnord-connect
     chapter: 2
     type: screen
-    source: 06_postnord_account_form.mov
-    zoom:
-      - { target: postnord.party_id_fields, on: "Party ID type" }
-      - { target: postnord.production_toggle, on: "switch on production mode" }
+    source: 06_postnord_account.mov
+    video:
+      trim: [0, 24.6]
+      sync:
+        - { src: 1.5, on: "select PostNord" }
+        - { src: 4.3, on: "click Add Account" }
+        - { src: 6.6, on: "Choose your country" }
+        - { src: 9.0, on: "select your Party ID type" }
+        - { src: 10.0, on: "enter your PostNord Party ID" }
+        - { src: 17.9, on: "then click Add" }
+        - { src: 21.9, on: "A confirmation message" }
+    patches: *qa
+    zoom: { target: postnord.account_fields, on: "Choose your country", until: "then click Add" }
     highlights:
-      - { target: postnord.party_id_fields, on: "Party ID type", until: "choose your country" }
-      - { target: postnord.production_toggle, on: "switch on production mode" }
-    blur: [postnord.party_id, postnord.account_number?, postnord.bank_details?]
+      - { target: carrier.postnord_card }
+      - { target: postnord.account_fields, on: "Choose your country", until: "then click Add" }
 
-  # ── 03 Set up PostNord shipping ────────────────────────────────────────
+  # ── 03 Set up PostNord shipping ───────────────────────────────────────
   - id: packaging-menu
     chapter: 3
     type: screen
     source: 07_packaging_app_main_menu.png
-    highlights: [{ target: menu.shipping_packaging }]
-  - id: packaging-options
+    patches: *qa
+    highlights: [{ target: menu.shipping_packaging, on: "starting with packaging" }]
+  - id: packaging-weight
     chapter: 3
     type: screen
-    source: 08_packing_method_dropdown.png
-    highlights: [{ target: packaging.method_with_dropdown }]
+    source: 08_weight_based_packaging.png
+    patches: *qa_stepper
+    zoom: packaging.method_weight
+  - id: packaging-box
+    chapter: 3
+    type: screen
+    source: 09_box_based_packaging.png
+    patches: *qa_stepper
+    zoom:
+      - { target: packaging.method }
+      - { target: packaging.boxes, on: "weight and dimensions" }
+  - id: packaging-other
+    chapter: 3
+    type: screen
+    source: 10_other_packing_options.png
+    patches: *qa_stepper
+    highlights: [{ target: packaging.method_with_dropdown, on: "several other packaging options" }]
+  - id: products-menu
+    chapter: 3
+    type: screen
+    source: 11_all_products_app_main_menu.png
+    patches: *qa
+    highlights: [{ target: menu.all_products, on: "Products section" }]
   - id: product-dimensions
     chapter: 3
     type: screen
-    source: 09_product_weight_dimensions.png
+    source: 12_product_weight_dimensions.png
+    patches: *qa
     zoom: product.weight_dimensions
-    highlights: [{ target: product.weight_dimensions }]
-  - id: services
+    highlights: [{ target: product.weight_dimensions, on: "weight and dimensions" }]
+  - id: default-dimensions
     chapter: 3
     type: screen
-    source: 10_label_automation_postnord_services.png   # label automation only — no checkout-rates panel
-    zoom: services.dropdown
-    highlights: [{ target: services.dropdown }]
-  - { id: servicepoint-card, chapter: 3, type: statement, text: "Delivering to a service point?" }
-  - id: service-point-enable
+    source: 13_default_weight_dimensions.png
+    patches: *qa
+    zoom: store.default_weight_dimensions
+    highlights: [{ target: store.default_weight_dimensions, on: "default values" }]
+  - id: carrier-details
     chapter: 3
     type: screen
-    source: 11_postnord_other_details_service_point.png
-    zoom: postnord.other_details
-    highlights: [{ target: postnord.service_point_toggle, on: "turn on PostNord Service Point" }]
-  - id: service-point-cart-block
+    source: 14_postnord_carrier_details.png
+    patches: *qa
+    zoom: postnord.lower_left
+    highlights: [{ target: postnord.other_details, on: "carrier details" }]
+  - id: service-point
     chapter: 3
     type: screen
-    source: 12_theme_editor_pickup_locations_block.mov
-    shopify_logo: true
-    highlights:
-      - { target: theme.pickup_locations_block, on: "Pick-up Locations block" }
-      - { target: theme.carrier_postnord, on: "select PostNord" }
-  - id: service-point-buyer
+    source: 15_postnord_service_point.png
+    patches: *qa
+    zoom: postnord.other_details_form
+    highlights: [{ target: postnord.service_point }]
+  - id: additional-services
     chapter: 3
     type: screen
-    source: 13_cart_service_point_selection.mov
-    shopify_logo: true
-    highlights:
-      - { target: cart.country_postal_code, on: "country and postal code", until: "pick the PostNord service point" }
-      - { target: cart.service_point_list, on: "pick the PostNord service point" }
-  - id: service-point-order
-    chapter: 3
-    type: screen
-    source: 14_order_local_pickup_location_details.png
-    zoom: order.local_pickup_location_details
-    highlights: [{ target: order.local_pickup_location_details, on: "Local Pickup Location Details" }]
-    blur: [order.customer_email?, order.customer_phone?]
-  - id: service-point-default
-    chapter: 3
-    type: screen
-    source: 15_automation_default_service_point.png
-    zoom: automation.action_row
-    highlights: [{ target: automation.default_service_point_action, on: "automation rule" }]
+    source: 16_postnord_additional_services.mov
+    video:
+      trim: [4, 28]
+      speed: [{ from: 4, to: 28, rate: 3 }]
+    patches: *qa
 
   # ── 04 Print PostNord shipping labels ─────────────────────────────────
   - id: labels-intro
     chapter: 4
     type: screen
-    source: 16_single_label_generation.mov
-    highlights:
-      - { target: order.shipping_address, on: "address", until: "click Generate Label" }
-      - { target: order.packaging_summary, on: "package", until: "click Generate Label" }
-      - { target: order.service_selected, on: "selected service", until: "click Generate Label" }
-  - { id: addons-card, chapter: 4, type: statement, text: "Need extra services?" }
-  - id: addons-dialog
+    source: 17_single_label.mov
+    video: { trim: [0, 11.5] }
+    patches: *qa
+    blur: [recipient.email]
+  - id: special-services-menu
     chapter: 4
     type: screen
-    source: 17_postnord_additional_settings.png
-    zoom: dialog.additional_services
-    highlights:
-      - { target: addon.insurance, on: "insurance" }
-      - { target: addon.confirmation_of_delivery, on: "Confirmation of Delivery" }
-  - id: rek-services
+    source: 18_add_special_services_menu.png
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+      - { target: grid.special_services_search, text: Add PostNord, bg: "#ffffff", color: "#1f1f1f", size: 31, weight: 400, pad_x: 5 }
+    zoom: grid.special_services_menu
+    highlights: [{ target: grid.special_services_option, on: "Add PostNord Special Services" }]
+  - id: special-services-dialog
     chapter: 4
     type: screen
-    source: 18_rek_fe_ua.png
-    zoom: dialog.additional_services
-    highlights:
-      - { target: order.service_rek, on: "PostNord Rek" }
-      - { target: addon.fe, on: "Faktura" }
-      - { target: addon.ua, on: "Utökat ansvar" }
-  - id: addons-automation
+    source: 19_special_services_dialog.png
+    patches: *qa
+    zoom: dialog.postnord_additional
+    highlights: [{ target: dialog.additional_services }]
+    hold: 1.4
+  - id: generate-print
     chapter: 4
     type: screen
-    source: 19_automation_add_postnord_special_services.png
-    zoom: automation.action_row
-    highlights: [{ target: automation.add_special_services_action, on: "Add PostNord special services" }]
+    source: 17_single_label.mov
+    video:
+      trim: [11.5, 33]
+      cut: [[21.4, 23.4], [24.1, 28.9]]
+      sync:
+        - { src: 12.2, on: "click Generate Label" }
+        - { src: 20.4, on: "open the Print Documents" }
+        - { src: 21.15, on: "select Label" }
+        - { src: 21.38, on: "print it" }
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+      - { target: demo.email_a, text: jack.sparrow@example.com, bg: "#fefefe", color: "#333333", size: 22, weight: 400, pad_x: 7 }
+      - { target: demo.email_a_dim, text: jack.sparrow@example.com, bg: "#c5c5c5", color: "#272727", size: 22, weight: 400, pad_x: 7 }
+      - { target: demo.email_b, text: jack.sparrow@example.com, bg: "#fefefe", color: "#333333", size: 22, weight: 400, pad_x: 7 }
+    zoom: { target: print.menu, on: "open the Print Documents", until: "print it" }
+    highlights: [{ target: print.label_option, on: "select Label", until: "print it" }]
+  - { id: edit-card, chapter: 4, type: statement, text: "Need to make changes?" }
+  - id: edit-order
+    chapter: 4
+    type: screen
+    source: 20_edit_order.mov
+    video:
+      trim: [0, 19]
+      sync:
+        - { src: 2.7, on: "you can edit the shipping address" }
+        - { src: 3.4, on: "from the order's" }
+        - { src: 12.9, on: "and update the box" }
+        - { src: 16.3, on: "Once your changes are saved" }
+    patches: *qa
+    highlights:
+      - { target: popup.address }
+      - { target: packages.popup }
+    blur: [recipient.email, recipient.phone, popup.phone, popup.email]
+  - { id: bulk-card, chapter: 4, type: statement, text: "Shipping in bulk?" }
   - id: bulk-labels
     chapter: 4
     type: screen
-    source: 20_bulk_label_generation.mov
-    video: { speed: [] }                       # fill 4x ranges after capture
+    source: 21_bulk_labels.mov
+    video:
+      trim: [0, 19.2]
+      cut: [[11.9, 16.6]]
+      sync:
+        - { src: 0.8, on: "select them all" }
+        - { src: 3.6, on: "click Generate Labels" }
+        - { src: 11.2, on: "print everything" }
+    patches: *qa
   - { id: returns-card, chapter: 4, type: statement, text: "Handling returns?" }
   - id: returns
     chapter: 4
     type: screen
-    source: 21_return_label.mov
-    zoom: { target: settings.return_label_type, on: "return label type", until: "then generate" }
-    highlights: [{ target: settings.return_label_type, on: "return label type" }]
-  - { id: intl-card, chapter: 4, type: statement, text: "Shipping outside the EU?" }
-  - id: cn22-cn23-settings
+    source: 22_return_label.mov
+    video:
+      cut: [[33.8, 37]]
+      speed: [{ from: 0, to: 33.8, rate: 3 }]
+    patches: *qa
+  - { id: intl-card, chapter: 4, type: statement, text: "Shipping internationally?" }
+  - id: intl-products-menu
     chapter: 4
     type: screen
-    source: 22_cn22_cn23_category_setting.png
-    zoom: settings.cn22_cn23_category
-    highlights: [{ target: settings.cn22_cn23_category, on: "category of your items" }]
+    source: 24_product_customs.png
+    patches: *qa
+    zoom: { target: customs.dialog, on: "customs information" }
+    highlights: [{ target: customs.dialog, on: "customs information" }]
+  - id: customs-fields
+    chapter: 4
+    type: screen
+    source: 24_product_customs.png
+    patches: *qa
+    zoom: customs.dialog
+    highlights:
+      - { target: customs.hs_code, on: "HS code" }
+      - { target: customs.country, on: "country of manufacture" }
+      - { target: customs.description, on: "product description" }
+    hold: 1.2
+  - id: customs-csv
+    chapter: 4
+    type: screen
+    source: 25_products_import_export.png
+    zoom: { target: products.toolbar, on: "export a CSV" }
+    highlights: [{ target: products.import_export, on: "export a CSV" }]
+  - id: cn22-category
+    chapter: 4
+    type: screen
+    source: 26_cn22_cn23_category.png
+    patches: *qa
+    zoom: dialog.postnord_additional
+    highlights: [{ target: dialog.cn22_cn23_category, on: "category of your items" }]
   - id: cn23-details
     chapter: 4
     type: screen
-    source: 23_cn23_document_details.png
-    zoom: dialog.cn23_details
-    highlights:
-      - { target: dialog.cn23_details_checkbox, on: "CN23 details" }
-      - { target: dialog.quarantine_checkbox, on: "quarantine comments" }
-  - id: tax-ids
-    chapter: 4
-    type: screen
-    source: 24_tax_ids.png
-    zoom: settings.tax_ids
-    highlights: [{ target: settings.tax_ids, on: "tax IDs" }]
+    source: 16_postnord_additional_services.mov
+    video: { trim: [29, 38.8] }
+    patches: *qa
   - id: intl-label
     chapter: 4
     type: screen
-    source: 25_international_label.mov
+    source: 27_international_label.mov
+    video: { cut: [[7.4, 10.4]] }
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+      - { target: demo.email, text: jack.sparrow@example.com, bg: "#fcfcfc", color: "#343434", size: 23, weight: 400, pad_x: 8 }
 
   # ── 05 Fulfil & track orders ──────────────────────────────────────────
   - id: fulfil
     chapter: 5
     type: screen
-    source: 26_order_fulfillment.mov
-    zoom: { target: orders.status_column, on: "fulfilled" }
-    highlights: [{ target: orders.status_column, on: "fulfilled" }]
+    source: 28_order_fulfillment.mov
+    video:
+      cut: [[1.2, 7.5]]
+      sync: [{ src: 0.95, on: "mark the orders as fulfilled" }]
+    patches: *qa
+    zoom: { target: orders.toolbar, until: "fulfilled" }
+    highlights:
+      - { target: orders.fulfil_button, on: "mark the orders" }
+      - { target: orders.status_column }
   - id: tracking-sync
     chapter: 5
     type: screen
-    source: 27_shopify_tracking_and_emails.mov
+    source: 29_shopify_tracking.mov
     shopify_logo: true
-    zoom: [{ target: shopify.tracking_added }, { target: shopify.timeline, on: "emails your customers" }]
-    blur: [shopify.customer_email, shopify.customer_phone, shopify.timeline_emails]
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Shippin…, icon: true, bg: "#303030", color: "#e3e3e3", size: 23, weight: 550, pad_x: 14 }
+      - { target: demo.customer_email, text: jack.sparrow@example.com, bg: "#fefefe", color: "#2f4fa9", size: 22, weight: 450, pad_x: 7 }
+      - { target: demo.customer_phone, text: "+46 70 123 45 67", bg: "#fefefe", color: "#2f2f2f", size: 22, weight: 400, pad_x: 8 }
+    highlights: [{ target: shopify.tracking_line }]
+  - id: tracking-email
+    chapter: 5
+    type: screen
+    source: 30_tracking_email.png
+    patches:
+      - { target: mail.header, bg: "#ffffff" }
+      - { target: mail.shop_button, text: Track your order, bg: "#4f34e2", color: "#ffffff", size: 30, weight: 500, align: center }
+    zoom: mail.top
+    highlights: [{ target: mail.tracking_number, on: "tracking number" }]
   - id: tracking-dashboard
     chapter: 5
     type: screen
-    source: 28_tracking_dashboard_delivered.png
-    zoom: tracking.delivered_panel
-    highlights: [{ target: tracking.delivered_panel }]
+    source: 31_tracking_dashboard.png
+    patches: *qa
+    zoom: tracking.table
+    highlights: [{ target: tracking.expanded_row, on: "every shipment" }]
 
   # ── Outro ─────────────────────────────────────────────────────────────
   - { id: recap, type: recap, shopify_logo: true }

@@ -1,0 +1,11 @@
+{
+  "name": "mcsl-carrier-videos-capture",
+  "private": true,
+  "description": "Playwright capture flows. No dependencies of its own: run setup.sh to link the mcsl-test-automation repo's node_modules.",
+  "scripts": {
+    "setup": "bash setup.sh",
+    "capture": "playwright test",
+    "list": "playwright test --list",
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

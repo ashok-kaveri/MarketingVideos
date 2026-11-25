@@ -1,0 +1,32 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1552
+ },
+ "boxes": {
+  "qa.title": [
+   368,
+   18,
+   470,
+   52
+  ],
+  "qa.sidebar": [
+   22,
+   810,
+   312,
+   50
+  ],
+  "qa.stepper_carrier": [
+   470,
+   350,
+   170,
+   42
+  ],
+  "packaging.method_with_dropdown": [
+   400,
+   544,
+   924,
+   352
+  ]
+ }
+}

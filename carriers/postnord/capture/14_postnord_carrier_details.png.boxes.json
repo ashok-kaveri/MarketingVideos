@@ -1,0 +1,38 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1552
+ },
+ "boxes": {
+  "qa.title": [
+   420,
+   20,
+   490,
+   56
+  ],
+  "qa.sidebar": [
+   24,
+   982,
+   350,
+   54
+  ],
+  "postnord.account_details": [
+   440,
+   480,
+   2360,
+   740
+  ],
+  "postnord.other_details": [
+   450,
+   1290,
+   270,
+   60
+  ],
+  "postnord.lower_left": [
+   420,
+   1060,
+   1560,
+   330
+  ]
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1554
+ },
+ "boxes": {
+  "qa.title": [
+   420,
+   22,
+   490,
+   56
+  ],
+  "qa.sidebar": [
+   24,
+   984,
+   350,
+   54
+  ],
+  "postnord.other_details_form": [
+   450,
+   430,
+   1830,
+   970
+  ],
+  "postnord.service_point": [
+   1380,
+   1036,
+   240,
+   84
+  ]
+ }
+}

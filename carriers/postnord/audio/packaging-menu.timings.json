@@ -1,0 +1,87 @@
+[
+{
+"word": "Before",
+"start": 0.0,
+"end": 0.24
+},
+{
+"word": "you",
+"start": 0.24,
+"end": 0.4
+},
+{
+"word": "print",
+"start": 0.4,
+"end": 0.58
+},
+{
+"word": "your",
+"start": 0.58,
+"end": 0.72
+},
+{
+"word": "first",
+"start": 0.72,
+"end": 0.94
+},
+{
+"word": "label,",
+"start": 0.94,
+"end": 1.3
+},
+{
+"word": "there",
+"start": 1.74,
+"end": 1.88
+},
+{
+"word": "are",
+"start": 1.88,
+"end": 2.0
+},
+{
+"word": "a",
+"start": 2.0,
+"end": 2.12
+},
+{
+"word": "few",
+"start": 2.12,
+"end": 2.28
+},
+{
+"word": "essentials",
+"start": 2.28,
+"end": 2.66
+},
+{
+"word": "to",
+"start": 2.66,
+"end": 2.98
+},
+{
+"word": "set",
+"start": 2.98,
+"end": 3.14
+},
+{
+"word": "up,",
+"start": 3.14,
+"end": 3.36
+},
+{
+"word": "starting",
+"start": 3.58,
+"end": 3.9
+},
+{
+"word": "with",
+"start": 3.9,
+"end": 4.1
+},
+{
+"word": "packaging.",
+"start": 4.1,
+"end": 4.48
+}
+]

@@ -13,7 +13,7 @@ const FastForward: React.FC<{ block?: Block }> = ({ block }) => {
   if (!seg) return null;
   return (
     <div style={{ position: 'absolute', left: 48, bottom: 22, background: color.accentDim, color: '#fff', fontFamily: font, fontSize: 18, fontWeight: 600, borderRadius: 8, padding: '6px 12px' }}>
-      ▶▶ {seg.rate}x fast-forward
+      ▶▶ {Math.round(seg.rate * 2) / 2}x fast-forward
     </div>
   );
 };
@@ -70,8 +70,12 @@ const SceneWrap: React.FC<{ scene: Scene; props: VideoProps }> = ({ scene, props
       </AbsoluteFill>
       {chapterTitle && <ChapterPill n={scene.chapter!} title={chapterTitle} />}
       <PluginHiveLogo src={props.assets.pluginhiveLogo} dark={scene.type === 'hook'} />
-      {scene.shopifyLogo && <ShopifyLogo src={props.assets.shopifyLogo} />}
-      {scene.audio && <Audio src={staticFile(scene.audio)} startFrom={0} />}
+      {scene.shopifyLogo && <ShopifyLogo src={props.assets.shopifyLogo} bag={props.assets.shopifyBag} />}
+      {scene.audio && (
+        <Sequence from={scene.audioFrom ?? 0} layout="none">
+          <Audio src={staticFile(scene.audio)} />
+        </Sequence>
+      )}
     </AbsoluteFill>
   );
 };

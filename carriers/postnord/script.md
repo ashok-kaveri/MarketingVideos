@@ -1,110 +1,126 @@
 # PostNord — narration
-Status: DRAFT v2 (verified against app support; see brief.md support matrix). For marketing review.
-Not in this video: live checkout rates, pickup booking, manifest, commercial invoice / customs documents.
+Status: DRAFT v4 — marketing review 1 applied (products line reordered so the screen matches the words).
+v3: marketing's script (reference/PostNord_script_marketing.txt, 2026-11-20) with
+fixes so every claim matches the app (see brief.md):
+- account fields are country of origin / Party ID type / Party ID (no Customer Number + API key)
+- CN22/CN23 is set in Add PostNord Special Services, not Print Settings (no CN22/CN23 print option)
+- pickup section removed (not supported for PostNord); intro and fulfil lines adjusted to match
+- "Confirmation on Delivery" → "Confirmation of Delivery" (name in the app)
 
 ## hook (silent)
 
 ## intro
-In this video, I'll show you how to automate your PostNord shipping on Shopify, from letting buyers choose a PostNord service point to printing labels with add-on services, handling returns, and tracking every parcel — all from one app.
+In this video, I'll show you how to automate your PostNord shipping on Shopify, from generating shipping labels and adding services like Service Point, insurance, and returns, to fulfilling and tracking orders, all from one app.
 
 ## install
 First, install the PH MultiCarrier Shipping Label app from the Shopify App Store.
 
 ## address-menu
-Once it's installed, the app automatically sets your Shopify store address as your shipping origin.
+Once it's installed, the app automatically sets your Shopify store address as your shipping origin,
 
 ## address-form
-You can edit this address
+and you can edit this address
 
 ## address-add
-or add more shipping locations if you need to.
+or add more shipping locations whenever you need to.
 
 ## carriers-tab
-Next, let's connect your PostNord account. Go to the Carriers tab in the app's main menu.
+With that done, let's connect your PostNord account. Go to the Carriers tab in the app's main menu,
 
 ## postnord-connect
-Select PostNord and click Add Account. Enter your Party ID type and your PostNord Party ID, choose your country of origin, and switch on production mode. Save, and your PostNord account is connected to the app.
+select PostNord, and click Add Account. Choose your country of origin, select your Party ID type, and enter your PostNord Party ID, then click Add. A confirmation message will appear, letting you know your PostNord account is now connected to the app.
 
 ## packaging-menu
-Now, let's set up your PostNord shipping. It starts with the right packaging.
+Before you print your first label, there are a few essentials to set up, starting with packaging.
 
-## packaging-options
-Pick the packing method that fits your store — by weight, by box, stacked, or by quantity — and the app packs every order for you.
+## packaging-weight
+If you ship light items, the weight-based option generates labels using each product's weight.
+
+## packaging-box
+If you ship bulkier boxes, the box-based option takes both weight and dimensions into account, so every label reflects exactly what you're sending.
+
+## packaging-other
+The app offers several other packaging options as well, so you can choose the one that suits your store best.
+
+## products-menu
+In the app's Products section,
 
 ## product-dimensions
-Then add your product weights and dimensions in the app's Products section. If anything is missing, the app falls back to default values.
+you can add each product's weight and dimensions,
 
-## services
-Next, choose the PostNord services you want to ship with, and the app assigns them to your orders automatically.
+## default-dimensions
+and if any product is missing these details, the app uses default values so your labels keep generating without interruption.
 
-## servicepoint-card
-Delivering to a service point?
+## carrier-details
+Next, head to the PostNord carrier details and choose the shipping services you want to offer, whether that's domestic parcels, express deliveries, or cross-border shipments.
 
-## service-point-enable
-In the PostNord carrier settings, turn on PostNord Service Point.
+## service-point
+The app also supports PostNord additional services such as Service Point,
 
-## service-point-cart-block
-Then, in your Shopify theme editor, add the app's Pick-up Locations block to your cart page and select PostNord.
-
-## service-point-buyer
-Now your buyers enter their country and postal code, and pick the PostNord service point that suits them best.
-
-## service-point-order
-Their choice appears on the order under Local Pickup Location Details, and the app prints it on the PostNord label.
-
-## service-point-default
-And if a buyer doesn't pick one, a simple automation rule assigns a default PostNord service point for you, so no order gets stuck.
+## additional-services
+insurance, Confirmation of Delivery, and more, along with registered mail through PostNord Rek and its additional options.
 
 ## labels-intro
-Now, let's print PostNord labels. Open an order, review the address, package, and selected service, and click Generate Label. To print, open the Print Documents dropdown and select Label.
+With everything configured, let's generate your first PostNord shipping label. Open an order and review the shipping address, packaging info, selected service, and other details.
 
-## addons-card
-Need extra services?
+## special-services-menu
+If a particular order needs extra services, click Add PostNord Special Services from the order grid
 
-## addons-dialog
-Open the PostNord additional settings to add services to any shipment. Add insurance to protect valuable parcels, and Confirmation of Delivery so you know when it's been delivered.
+## special-services-dialog
+and select the ones you need.
 
-## rek-services
-Sending registered mail? Choose PostNord Rek, and combine it with Faktura without submission documents, FE, and Utökat ansvar, UA, for extended liability.
+## generate-print
+When everything looks right, click Generate Label, then open the Print Documents dropdown and select Label to print it.
 
-## addons-automation
-Need the same add-ons on every order? Create an automation rule with Add PostNord special services, and the app applies them for you.
+## edit-card (silent)
+
+## edit-order
+If something needs changing before you generate the label, you can edit the shipping address from the order's Recipient section and update the box, weight, or dimensions from the packaging block. Once your changes are saved, generate the label the same way.
+
+## bulk-card (silent)
 
 ## bulk-labels
-Shipping in bulk? Select multiple orders, click Generate Labels, and print them all at once.
+When you have several orders ready, simply select them all, click Generate Labels, and print everything at once.
 
-## returns-card
-Handling returns?
+## returns-card (silent)
 
 ## returns
-Set your return label type once in the PostNord settings, then generate PostNord return labels for your orders in just a few clicks.
+Returns are just as simple. You can generate a return label directly from the order, giving your customer a ready-to-use label and making returns as smooth as your outbound shipments.
 
-## intl-card
-Shipping outside the EU?
+## intl-card (silent)
 
-## cn22-cn23-settings
-The app adds the right customs declaration, CN22 or CN23, to your PostNord shipment, based on the service you choose. Just set the category of your items once in the PostNord settings.
+## intl-products-menu
+For international orders, start by adding customs information to your products so your declarations are filled in accurately.
+
+## customs-fields
+There are three key details: the HS code, the country of manufacture, and the product description.
+
+## customs-csv
+You can enter these product by product, or export a CSV, update everything in bulk, and import it back.
+
+## cn22-category
+Then, open Add PostNord Special Services on the order and choose the category of your items for the CN22 or CN23 declaration. The app supports CN22 for low-value shipments and CN23 for higher-value or commercial goods.
 
 ## cn23-details
-For a single order, you can also add CN23 details, like importer reference or quarantine comments.
-
-## tax-ids
-And add your tax IDs once, so the right ones go with your international PostNord shipments.
+If your CN23 needs additional details, such as postal charges, you can add them in the same window.
 
 ## intl-label
-Then generate the label as usual.
+Now, when you generate the label as usual, the app creates the customs form along with it for smooth clearance.
 
 ## fulfil
-Once your parcels are on their way, mark the orders as fulfilled.
+Once your packages are on their way, mark the orders as fulfilled.
 
 ## tracking-sync
-The app syncs the PostNord tracking numbers to your Shopify orders and emails your customers, so they can follow their parcels.
+The tracking details sync automatically to your Shopify orders,
+
+## tracking-email
+and your customers receive an email with their tracking number so they can follow their shipments.
 
 ## tracking-dashboard
-You can also follow every shipment in the app's built-in tracking dashboard.
+You can also keep an eye on every shipment from the app's built-in tracking dashboard.
 
 ## recap
-That's how you can automate your PostNord shipping on Shopify with the PH MultiCarrier Shipping Label app.
+And that's how you can automate your PostNord shipping on Shopify with the PH MultiCarrier Shipping Label app.
 
 ## app-card
 Start your free trial today and simplify your shipping and fulfilment process.

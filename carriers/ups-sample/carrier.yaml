@@ -1,0 +1,17 @@
+# Pipeline sample of the UPS video (QA store). Same brand data as carriers/ups/carrier.yaml.
+code: ups-sample
+name: UPS
+logo: brand/logos/ups.png
+chapters:
+  - Print UPS shipping labels
+  - Fulfil & track orders
+hook_bubbles:
+  - Printing labels one by one…
+  - Copy-pasting tracking numbers…
+  - Where's my package?
+  - Did UPS get my order?
+title_chips: [Labels in bulk, Tracking]
+recap_line: "Your UPS shipping, automated."
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+support_url: www.pluginhive.com/support
+voice: { provider: kokoro, voice_id: af_heart }

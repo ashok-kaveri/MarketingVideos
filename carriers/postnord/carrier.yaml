@@ -18,6 +18,6 @@ hook_bubbles:
   - How do I send a return?
 title_chips: [Service points, CN22 / CN23, Rek & add-ons, Returns]
 recap_line: "Your PostNord shipping, automated."
-app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 656, developer: PluginHive }
 support_url: www.pluginhive.com/support
-voice: { provider: TBD, voice_id: TBD }   # same voice as UPS video
+voice: { provider: kokoro, voice_id: af_heart }   # tools/tts.py

@@ -1,0 +1,82 @@
+[
+{
+"word": "There",
+"start": 0.0,
+"end": 0.18
+},
+{
+"word": "are",
+"start": 0.18,
+"end": 0.32
+},
+{
+"word": "three",
+"start": 0.32,
+"end": 0.6
+},
+{
+"word": "key",
+"start": 0.6,
+"end": 0.86
+},
+{
+"word": "details:",
+"start": 0.86,
+"end": 1.4
+},
+{
+"word": "the",
+"start": 1.96,
+"end": 2.04
+},
+{
+"word": "HS",
+"start": 2.04,
+"end": 2.44
+},
+{
+"word": "code,",
+"start": 2.44,
+"end": 2.8
+},
+{
+"word": "the",
+"start": 3.24,
+"end": 3.26
+},
+{
+"word": "country",
+"start": 3.26,
+"end": 3.54
+},
+{
+"word": "of",
+"start": 3.54,
+"end": 3.7
+},
+{
+"word": "manufacture,",
+"start": 3.7,
+"end": 4.18
+},
+{
+"word": "and",
+"start": 4.6,
+"end": 4.7
+},
+{
+"word": "the",
+"start": 4.7,
+"end": 4.82
+},
+{
+"word": "product",
+"start": 4.82,
+"end": 5.1
+},
+{
+"word": "description.",
+"start": 5.1,
+"end": 5.48
+}
+]

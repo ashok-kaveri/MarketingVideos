@@ -1,0 +1,64 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1554
+ },
+ "boxes": {
+  "qa.sidebar": [
+   27,
+   1143,
+   346,
+   54
+  ],
+  "shopify.customer_email": {
+   "rect": [
+    2080,
+    370,
+    420,
+    50
+   ],
+   "from": 1.0,
+   "to": 99
+  },
+  "shopify.customer_phone": {
+   "rect": [
+    2080,
+    750,
+    400,
+    46
+   ],
+   "from": 1.0,
+   "to": 99
+  },
+  "shopify.tracking_line": {
+   "rect": [
+    660,
+    400,
+    620,
+    60
+   ],
+   "from": 1.0,
+   "to": 99
+  },
+  "demo.customer_email": {
+   "rect": [
+    2090,
+    377,
+    330,
+    33
+   ],
+   "from": 1.0,
+   "to": 99
+  },
+  "demo.customer_phone": {
+   "rect": [
+    2090,
+    753,
+    230,
+    29
+   ],
+   "from": 1.0,
+   "to": 99
+  }
+ }
+}

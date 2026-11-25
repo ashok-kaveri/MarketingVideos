@@ -1,0 +1,57 @@
+[
+{
+"word": "The",
+"start": 0.0,
+"end": 0.12
+},
+{
+"word": "app",
+"start": 0.12,
+"end": 0.34
+},
+{
+"word": "also",
+"start": 0.34,
+"end": 0.74
+},
+{
+"word": "supports",
+"start": 0.74,
+"end": 1.28
+},
+{
+"word": "PostNord",
+"start": 1.28,
+"end": 1.88
+},
+{
+"word": "additional",
+"start": 1.88,
+"end": 2.22
+},
+{
+"word": "services",
+"start": 2.22,
+"end": 2.88
+},
+{
+"word": "such",
+"start": 2.88,
+"end": 3.2
+},
+{
+"word": "as",
+"start": 3.2,
+"end": 3.42
+},
+{
+"word": "Service",
+"start": 3.42,
+"end": 3.62
+},
+{
+"word": "Point,",
+"start": 3.62,
+"end": 4.02
+}
+]

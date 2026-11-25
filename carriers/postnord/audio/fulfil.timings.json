@@ -1,0 +1,62 @@
+[
+{
+"word": "Once",
+"start": 0.0,
+"end": 0.26
+},
+{
+"word": "your",
+"start": 0.26,
+"end": 0.44
+},
+{
+"word": "packages",
+"start": 0.44,
+"end": 0.78
+},
+{
+"word": "are",
+"start": 0.78,
+"end": 1.1
+},
+{
+"word": "on",
+"start": 1.1,
+"end": 1.24
+},
+{
+"word": "their",
+"start": 1.24,
+"end": 1.38
+},
+{
+"word": "way,",
+"start": 1.38,
+"end": 1.7
+},
+{
+"word": "mark",
+"start": 2.1,
+"end": 2.22
+},
+{
+"word": "the",
+"start": 2.22,
+"end": 2.42
+},
+{
+"word": "orders",
+"start": 2.42,
+"end": 2.7
+},
+{
+"word": "as",
+"start": 2.7,
+"end": 3.0
+},
+{
+"word": "fulfilled.",
+"start": 3.0,
+"end": 3.34
+}
+]

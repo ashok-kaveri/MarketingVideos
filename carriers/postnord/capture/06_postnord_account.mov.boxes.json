@@ -1,0 +1,40 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1558
+ },
+ "boxes": {
+  "qa.title": [
+   346,
+   26,
+   434,
+   42
+  ],
+  "qa.sidebar": [
+   20,
+   826,
+   290,
+   42
+  ],
+  "carrier.postnord_card": {
+   "rect": [
+    2190,
+    630,
+    580,
+    530
+   ],
+   "from": 0,
+   "to": 3.6
+  },
+  "postnord.account_fields": {
+   "rect": [
+    380,
+    380,
+    1880,
+    330
+   ],
+   "from": 4,
+   "to": 25
+  }
+ }
+}

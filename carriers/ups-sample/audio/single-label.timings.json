@@ -1,0 +1,122 @@
+[
+{
+"word": "Open",
+"start": 0.0,
+"end": 0.3
+},
+{
+"word": "an",
+"start": 0.3,
+"end": 0.48
+},
+{
+"word": "order",
+"start": 0.48,
+"end": 0.7
+},
+{
+"word": "to",
+"start": 0.7,
+"end": 0.98
+},
+{
+"word": "review",
+"start": 0.98,
+"end": 1.22
+},
+{
+"word": "the",
+"start": 1.22,
+"end": 1.4
+},
+{
+"word": "details,",
+"start": 1.4,
+"end": 1.9
+},
+{
+"word": "such",
+"start": 2.22,
+"end": 2.38
+},
+{
+"word": "as",
+"start": 2.38,
+"end": 2.56
+},
+{
+"word": "the",
+"start": 2.56,
+"end": 2.72
+},
+{
+"word": "shipping",
+"start": 2.72,
+"end": 2.94
+},
+{
+"word": "address,",
+"start": 2.94,
+"end": 3.34
+},
+{
+"word": "packaging",
+"start": 3.8,
+"end": 4.1
+},
+{
+"word": "details",
+"start": 4.1,
+"end": 4.64
+},
+{
+"word": "and",
+"start": 4.64,
+"end": 4.96
+},
+{
+"word": "shipping",
+"start": 4.96,
+"end": 5.2
+},
+{
+"word": "service.",
+"start": 5.2,
+"end": 5.64
+},
+{
+"word": "Once",
+"start": 6.42,
+"end": 6.62
+},
+{
+"word": "you've",
+"start": 6.62,
+"end": 6.9
+},
+{
+"word": "reviewed",
+"start": 6.9,
+"end": 7.16
+},
+{
+"word": "everything,",
+"start": 7.16,
+"end": 7.7
+},
+{
+"word": "click",
+"start": 8.16,
+"end": 8.3
+},
+{
+"word": "Generate",
+"start": 8.3,
+"end": 8.84
+},
+{
+"word": "Label.",
+"start": 8.84,
+"end": 8.98
+}
+]

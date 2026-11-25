@@ -1,0 +1,77 @@
+[
+{
+"word": "Once",
+"start": 0.0,
+"end": 0.24
+},
+{
+"word": "it's",
+"start": 0.24,
+"end": 0.46
+},
+{
+"word": "installed,",
+"start": 0.46,
+"end": 1.0
+},
+{
+"word": "the",
+"start": 1.44,
+"end": 1.56
+},
+{
+"word": "app",
+"start": 1.56,
+"end": 1.8
+},
+{
+"word": "automatically",
+"start": 1.8,
+"end": 2.44
+},
+{
+"word": "sets",
+"start": 2.44,
+"end": 2.84
+},
+{
+"word": "your",
+"start": 2.84,
+"end": 3.1
+},
+{
+"word": "Shopify",
+"start": 3.1,
+"end": 3.66
+},
+{
+"word": "store",
+"start": 3.66,
+"end": 3.96
+},
+{
+"word": "address",
+"start": 3.96,
+"end": 4.34
+},
+{
+"word": "as",
+"start": 4.34,
+"end": 4.66
+},
+{
+"word": "your",
+"start": 4.66,
+"end": 4.82
+},
+{
+"word": "shipping",
+"start": 4.82,
+"end": 5.1
+},
+{
+"word": "origin,",
+"start": 5.1,
+"end": 5.56
+}
+]

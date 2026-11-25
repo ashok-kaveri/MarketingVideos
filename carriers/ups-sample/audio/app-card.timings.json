@@ -1,0 +1,62 @@
+[
+{
+"word": "Start",
+"start": 0.0,
+"end": 0.24
+},
+{
+"word": "your",
+"start": 0.24,
+"end": 0.42
+},
+{
+"word": "free",
+"start": 0.42,
+"end": 0.62
+},
+{
+"word": "trial",
+"start": 0.62,
+"end": 0.98
+},
+{
+"word": "today",
+"start": 0.98,
+"end": 1.4
+},
+{
+"word": "and",
+"start": 1.4,
+"end": 1.9
+},
+{
+"word": "simplify",
+"start": 1.9,
+"end": 2.32
+},
+{
+"word": "your",
+"start": 2.32,
+"end": 2.6
+},
+{
+"word": "shipping",
+"start": 2.6,
+"end": 2.94
+},
+{
+"word": "and",
+"start": 2.94,
+"end": 3.22
+},
+{
+"word": "fulfilment",
+"start": 3.22,
+"end": 3.58
+},
+{
+"word": "process.",
+"start": 3.58,
+"end": 4.06
+}
+]

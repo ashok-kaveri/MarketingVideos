@@ -1,0 +1,32 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1548
+ },
+ "boxes": {
+  "qa.title": [
+   420,
+   18,
+   490,
+   56
+  ],
+  "qa.sidebar": [
+   24,
+   978,
+   350,
+   54
+  ],
+  "dialog.postnord_additional": [
+   1016,
+   434,
+   1240,
+   766
+  ],
+  "dialog.additional_services": [
+   1056,
+   610,
+   1040,
+   90
+  ]
+ }
+}

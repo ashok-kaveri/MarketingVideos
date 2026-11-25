@@ -1,0 +1,38 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1554
+ },
+ "boxes": {
+  "qa.title": [
+   420,
+   22,
+   490,
+   56
+  ],
+  "qa.sidebar": [
+   24,
+   982,
+   350,
+   54
+  ],
+  "grid.special_services_menu": [
+   2220,
+   840,
+   556,
+   220
+  ],
+  "grid.special_services_search": [
+   2240,
+   880,
+   470,
+   46
+  ],
+  "grid.special_services_option": [
+   2255,
+   968,
+   500,
+   50
+  ]
+ }
+}

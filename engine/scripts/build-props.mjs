@@ -56,7 +56,11 @@ if (dup.length) err(`duplicate scene ids: ${dup.join(', ')}`);
 // ── public/ links so Remotion can serve the files ─────────────────────
 const pub = path.join(ENGINE, 'public');
 fs.mkdirSync(path.join(pub, 'carriers'), { recursive: true });
-const link = (target, at) => { try { fs.lstatSync(at); } catch { fs.symlinkSync(target, at); } };
+// (re)link: a project that was moved or copied leaves links pointing at the old location
+const link = (target, at) => {
+  try { if (fs.readlinkSync(at) === target) return; fs.unlinkSync(at); } catch { /* missing */ }
+  fs.symlinkSync(target, at);
+};
 link(path.join(ROOT, 'brand'), path.join(pub, 'brand'));
 link(CDIR, path.join(pub, 'carriers', code));
 
@@ -64,6 +68,7 @@ const asset = (rel) => (fs.existsSync(path.join(ROOT, rel)) ? rel : undefined);
 const assets = {
   pluginhiveLogo: asset('brand/logos/pluginhive.png'),
   shopifyLogo: asset('brand/logos/shopify.png'),
+  shopifyBag: asset('brand/icons/shopify_bag.png'),
   appIcon: asset('brand/icons/ph_app_icon.png'),
   music: asset('brand/music/bed.mp3'),
 };
@@ -91,7 +96,11 @@ function placeholder(name) {
   return { src: `placeholders/${safe}`, kind: 'image', w: 1920, h: 1080, placeholder: true };
 }
 
-function loadMedia(source, videoSpec) {
+const SLOW_MIN = 0.75; // sync never slows a clip below this; the rest of the gap is a freeze
+
+/** videoSpec.sync: [{ src: <source sec>, on: "<narration phrase>" }] — the source moment lands on the spoken word.
+ *  Between anchors the clip is sped up (or slowed to SLOW_MIN, then frozen) to fit; after the last anchor `speed` applies. */
+function loadMedia(source, videoSpec, at) {
   const file = path.join(CDIR, 'capture', source);
   if (!fs.existsSync(file)) {
     (PLACEHOLDERS ? warn : err)(`missing capture: carriers/${code}/capture/${source}`);
@@ -99,7 +108,13 @@ function loadMedia(source, videoSpec) {
   }
   const p = probe(file);
   const isVideo = /\.(mov|mp4|m4v|webm)$/i.test(source);
-  const media = { src: `carriers/${code}/capture/${source}`, kind: isVideo ? 'video' : 'image', w: p.w, h: p.h };
+  // Coordinate space = the capture's declared size (boxes.json "image"), so boxes, inline rects and patch
+  // sizes stay in capture pixels even when the file is a smaller proxy of the same clip (fast drafts).
+  const declared = (() => {
+    try { return JSON.parse(fs.readFileSync(`${file}.boxes.json`, 'utf8')).image; } catch { return null; }
+  })();
+  const sameShape = declared?.w && declared?.h && Math.abs(declared.w / declared.h - p.w / p.h) < 0.01;
+  const media = { src: `carriers/${code}/capture/${source}`, kind: isVideo ? 'video' : 'image', w: sameShape ? declared.w : p.w, h: sameShape ? declared.h : p.h };
   if (!isVideo) return { media, map: () => 0 };
 
   // trim -> minus cuts -> split by speed ranges
@@ -110,26 +125,52 @@ function loadMedia(source, videoSpec) {
     parts = parts.flatMap(([f, t]) => (ct <= f || cf >= t ? [[f, t]] : [[f, cf], [ct, t]].filter(([x, y]) => y - x > 0.01)));
   }
   const speeds = videoSpec?.speed ?? [];
+  const clip = (f, t) => parts.map(([x, y]) => [Math.max(x, f), Math.min(y, t)]).filter(([x, y]) => y - x > 0.001);
+  const contentLen = (f, t) => clip(f, t).reduce((n, [x, y]) => n + y - x, 0);
+  const playRange = (f, t, rate) => clip(f, t).flatMap(([pf, pt]) => {
+    if (rate !== undefined) return [{ srcFrom: pf, srcTo: pt, rate }];
+    const cuts = [pf, pt, ...speeds.flatMap((s) => [s.from, s.to]).filter((x) => x > pf && x < pt)].sort((x, y) => x - y);
+    return cuts.slice(0, -1).map((c, i) => {
+      const mid = (c + cuts[i + 1]) / 2;
+      return { srcFrom: c, srcTo: cuts[i + 1], rate: speeds.find((s) => mid >= s.from && mid < s.to)?.rate ?? 1 };
+    });
+  });
   const pieces = [];
-  for (const [f, t] of parts) {
-    const cuts = [f, t, ...speeds.flatMap((s) => [s.from, s.to]).filter((x) => x > f && x < t)].sort((x, y) => x - y);
-    for (let i = 0; i < cuts.length - 1; i++) {
-      const mid = (cuts[i] + cuts[i + 1]) / 2;
-      const sp = speeds.find((s) => mid >= s.from && mid < s.to);
-      pieces.push({ srcFrom: cuts[i], srcTo: cuts[i + 1], rate: sp?.rate ?? 1 });
+  let prev = { src: a, out: 0 };
+  const anchors = (videoSpec?.sync ?? []).map((s) => ({ src: s.src, out: at(s.on) })).sort((x, y) => x.src - y.src);
+  for (const q of anchors) {
+    const D = contentLen(prev.src, q.src);
+    const T = q.out - prev.out;
+    if (q.src <= prev.src || T <= 0.05) { err(`${source}: sync anchor at ${q.src}s lands before the previous one — check src/on order`); continue; }
+    const rate = D / T;
+    if (rate < 1) {
+      const r = Math.max(rate, SLOW_MIN);
+      const hold = T - D / r;
+      if (hold > 0.02) pieces.push({ srcFrom: prev.src, srcTo: prev.src, rate: 1, freeze: true, hold });
+      pieces.push(...playRange(prev.src, q.src, r));
+    } else {
+      if (rate > 12) warn(`${source}: sync runs ${rate.toFixed(1)}x between ${prev.src}s and ${q.src}s`);
+      pieces.push(...playRange(prev.src, q.src, rate));
     }
+    prev = q;
   }
+  pieces.push(...playRange(prev.src, b));
   let out = 0;
   media.segments = pieces.map((s) => {
-    const len = Math.max(1, Math.round(((s.srcTo - s.srcFrom) / s.rate) * FPS));
-    const seg = { ...s, outFrom: out, outTo: out + len };
+    const len = Math.max(1, Math.round((s.freeze ? s.hold : (s.srcTo - s.srcFrom) / s.rate) * FPS));
+    const { hold, ...rest } = s;
+    const seg = { ...rest, outFrom: out, outTo: out + len };
     out += len;
     return seg;
   });
   media.videoFrames = out;
-  const map = (t) => { // source seconds -> output frame
-    for (const s of media.segments) if (t >= s.srcFrom && t <= s.srcTo) return s.outFrom + Math.round(((t - s.srcFrom) / s.rate) * FPS);
-    return t < a ? 0 : out;
+  // source seconds -> output frame; end=true gives the last frame showing t (a freeze shows it for its whole length)
+  const map = (t, end = false) => {
+    const hits = media.segments.filter((s) => t >= s.srcFrom && t <= s.srcTo);
+    if (!hits.length) return t < a ? 0 : out;
+    const s = end ? hits[hits.length - 1] : hits[0];
+    if (s.freeze) return end ? s.outTo : s.outFrom;
+    return s.outFrom + Math.round(((t - s.srcFrom) / s.rate) * FPS);
   };
   return { media, map };
 }
@@ -149,17 +190,24 @@ function loadBoxes(source, media) {
 }
 
 // ── narration timing ──────────────────────────────────────────────────
+// A section that ends mid-sentence runs straight into the next scene: no hold after it, no lead-in on the next.
+// (tools/tts.py speaks such sections as one take and splits it between the words.)
+const endsSentence = (t) => /[.!?]["”’)]*$/.test(t.trim());
+const spokenIds = Object.keys(script).filter((id) => !script[id].silent && script[id].text);
+const continues = new Set(spokenIds.filter((id) => !endsSentence(script[id].text)));
+const continued = new Set(spokenIds.filter((id, i) => i > 0 && continues.has(spokenIds[i - 1])));
 const norm = (w) => w.toLowerCase().replace(/[^a-z0-9']/g, '');
 function narration(id) {
   const s = script[id] ?? { text: '', silent: true };
+  const lead = continued.has(id) ? 0 : LEAD;
   const tj = path.join(CDIR, 'audio', `${id}.timings.json`);
   const audioFile = ['mp3', 'wav', 'm4a'].map((e) => path.join(CDIR, 'audio', `${id}.${e}`)).find((f) => fs.existsSync(f));
   let words;
   if (fs.existsSync(tj)) {
-    words = JSON.parse(fs.readFileSync(tj, 'utf8')).map((w) => ({ w: norm(w.word), start: w.start + LEAD, end: w.end + LEAD }));
+    words = JSON.parse(fs.readFileSync(tj, 'utf8')).map((w) => ({ w: norm(w.word), start: w.start + lead, end: w.end + lead }));
   } else {
     const toks = s.text.split(/\s+/).filter(Boolean);
-    words = toks.map((t, i) => ({ w: norm(t), start: LEAD + i / WORDS_PER_SEC, end: LEAD + (i + 1) / WORDS_PER_SEC }));
+    words = toks.map((t, i) => ({ w: norm(t), start: lead + i / WORDS_PER_SEC, end: lead + (i + 1) / WORDS_PER_SEC }));
   }
   words = words.filter((w) => w.w);
   const voEnd = words.length ? words[words.length - 1].end : 0;
@@ -168,14 +216,14 @@ function narration(id) {
     const p = phrase.split(/\s+/).map(norm).filter(Boolean);
     for (let i = 0; i + p.length <= words.length; i++) if (p.every((w, j) => words[i + j].w === w)) return words[i].start;
     err(`${sceneId}: phrase "${phrase}" not found in narration`);
-    return LEAD;
+    return lead;
   };
-  return { text: s.text, silent: s.silent || !s.text, voEnd, audio, at };
+  return { text: s.text, silent: s.silent || !s.text, voEnd, audio, at, lead };
 }
 
 // ── block (media + zooms + highlights + blurs) ────────────────────────
 function buildBlock(spec, sceneId, nar, sceneFramesFn) {
-  const { media, map } = loadMedia(spec.source, spec.video);
+  const { media, map } = loadMedia(spec.source, spec.video, (p) => nar.at(p, sceneId));
   const boxes = loadBoxes(spec.source, media);
   const resolve = (t) => {
     if (Array.isArray(t) && typeof t[0] === 'number') return [{ rect: t }];
@@ -186,7 +234,7 @@ function buildBlock(spec, sceneId, nar, sceneFramesFn) {
       if (!optional) (PLACEHOLDERS || media.placeholder ? warn : err)(`${sceneId}: box "${name}" not in ${spec.source}.boxes.json`);
       return [];
     }
-    return hit.map((h) => ({ rect: h.rect, from: h.from !== undefined ? map(h.from) : undefined, to: h.to !== undefined ? map(h.to) : undefined }));
+    return hit.map((h) => ({ rect: h.rect, from: h.from !== undefined ? map(h.from) : undefined, to: h.to !== undefined ? map(h.to, true) : undefined }));
   };
   const total = sceneFramesFn(media);
   const frameOf = (phrase) => sec(nar.at(phrase, sceneId));
@@ -225,8 +273,16 @@ function buildBlock(spec, sceneId, nar, sceneFramesFn) {
     }
   }
 
+  // patches: opaque covers with optional text/icon, e.g. app name in the title bar
+  const patches = (spec.patches ?? []).flatMap((p) => resolve(p.target).map((r) => ({
+    rect: r.rect, from: r.from ?? 0, to: r.to ?? total,
+    bg: p.bg ?? '#ffffff', text: p.text, color: p.color ?? '#303030', size: p.size, weight: p.weight ?? 500, padX: p.pad_x, align: p.align,
+    icon: p.icon ? assets.appIcon : undefined,
+  })));
+  if ((spec.patches ?? []).some((p) => p.icon) && !assets.appIcon) warn(`${sceneId}: patch wants icon but brand/icons/ph_app_icon.png is missing`);
+
   const blurs = (spec.blur ?? []).flatMap((t) => resolve(t).map((r) => ({ rect: r.rect, from: r.from ?? 0, to: r.to ?? total })));
-  return { media, caption: spec.caption, zooms, highlights, blurs };
+  return { media, caption: spec.caption, zooms, highlights, blurs, patches };
 }
 
 // ── scenes ────────────────────────────────────────────────────────────
@@ -242,12 +298,12 @@ for (const s of shots) {
     lastChapter = s.chapter;
   }
   const nar = narration(s.id);
-  const hold = s.hold ?? HOLD;
+  const hold = s.hold ?? (continues.has(s.id) ? 0 : HOLD);
   const voFrames = nar.silent ? 0 : sec(nar.voEnd + hold);
   const base = Math.max(voFrames, sec(SILENT[s.type] ?? 0), sec(1.5));
   const sceneFrames = (media) => Math.max(base, media?.videoFrames ?? 0);
 
-  const scene = { id: s.id, type: s.type, chapter: s.chapter, shopifyLogo: !!s.shopify_logo, audio: nar.audio, text: s.text, kind: s.kind, from: cursor };
+  const scene = { id: s.id, type: s.type, chapter: s.chapter, shopifyLogo: !!s.shopify_logo, audio: nar.audio, audioFrom: sec(nar.lead), text: s.text, kind: s.kind, from: cursor };
   if (s.type === 'screen') {
     if (!s.source) err(`${s.id}: screen scene needs "source"`);
     else scene.block = buildBlock(s, s.id, nar, sceneFrames);
@@ -266,7 +322,7 @@ for (const s of shots) {
         m.segments = [{ srcFrom: last.srcTo - last.rate / FPS, srcTo: last.srcTo, rate: last.rate, outFrom: 0, outTo: 1 }];
         m.videoFrames = 1;
       }
-      scene.block = { media: m, zooms: [], highlights: [], blurs: over.block.blurs.map((b) => ({ ...b, from: 0, to: 1e9 })) };
+      scene.block = { media: m, zooms: [], highlights: [], blurs: over.block.blurs.map((b) => ({ ...b, from: 0, to: 1e9 })), patches: (over.block.patches ?? []).map((p) => ({ ...p, from: 0, to: 1e9 })) };
     }
     scene.duration = base;
   } else {

@@ -38,6 +38,14 @@ Code: `~/Documents/storepep-react/storepepSAAS` (b5f78c270). KB: `MCSLDomainExpe
 Dropped compared with UPS: live rates and the checkout demo, the pickup chapter, manifest, commercial invoice, paperless invoice.
 
 ## Open questions
-1. CN22/CN23: does the merchant get a CN22/CN23 PDF from PostNord (ZI-480 implies a separate PDF today), or should we only say "sent electronically"? Script v2 says only "added to your shipment".
+1. CN22/CN23: does the merchant get a CN22/CN23 PDF from PostNord (ZI-480 implies a separate PDF today), or should we only say "sent electronically"? **Answered by marketing's capture (2026-11-20):** Print Documents → All gives the label plus a CN22 page ("International tracked letter", order #1029), so script v3 keeps "creates the customs form along with it".
 2. Is FE auto-added on Rek for all stores (`postNord.rek.service.default.value`)? Script v2 says "combine", not "automatically".
 3. Demo store origin: Sweden (Rek, FE/UA, Swedish add-on names) — confirm.
+
+## Notes from marketing's raw captures (2026-11-20)
+- Print Settings has no CN22/CN23 option (only Label, Commercial Invoice, etc.), so the CN22/CN23 step is shown in
+  Add PostNord Special Services → "Category of Item for CN22-CN23" instead.
+- The account form is Country of Origin / Party ID Type / Party ID / Production Key (no API key).
+- The QA app's Pickup tab lists a PostNord order after Request Pickup. Product said pickup is not supported, so the
+  video leaves it out — confirm with product whether that changed.
+- The fulfil clip shows "Manifest initiated" toasts (manifest is not supported); they are blurred in the video.

@@ -54,9 +54,27 @@ scenes:
     source: 6_UPS_account_integration.mov
     video:
       trim: [0, 126]             # seconds in the source
+      cut: [[12, 15]]            # optional: drop these source ranges (loading screens, wrong clicks)
       speed:                     # optional speed ramps (source seconds)
         - { from: 40, to: 62, rate: 4 }   # shows the fast-forward badge
+      sync:                      # optional: this source moment happens on this spoken phrase
+        - { src: 4.3, on: "click Add Account" }
+        - { src: 17.9, on: "then click Add" }
 ```
+With `sync`, the clip between two anchors is sped up to fit the narration, or slowed (never below
+0.75x) and then held on its first frame, so every click lands on its word. `speed` applies only after
+the last anchor. Use it whenever the narration describes the actions in the clip.
+
+### Patches (cover part of a capture)
+```yaml
+    patches:
+      - { target: qa.title?, text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 24, pad_x: 6 }
+      - { target: demo.email, text: orders@yourstore.com, bg: "#ffffff", color: "#000000", size: 28, weight: 400, pad_x: 12 }
+      - { target: mail.button, text: Track your order, bg: "#4f34e2", color: "#fff", size: 30, align: center }
+```
+An opaque box (source-pixel `size`, `pad_x`) with optional text and app icon. Use it for demo data over
+personal details on still screens (preferred to blur) and for wrong labels. Box the inside of an input,
+not its border, and match the page background (a dimmed page is `#7f7f7f`).
 
 ### Box names (`zoom`, `highlights.target`, `blur`)
 Resolved from `capture/<source>.boxes.json`, written by the Playwright capture flows:
@@ -81,5 +99,7 @@ A scene without `chapter` (hook, intro, outro) shows no chapter pill.
 ### Timing
 - Scene duration = narration length (from `audio/<id>.timings.json`, or estimated at 2.6 words/s
   before TTS exists) + `hold`. Video scenes: max(narration, playable video length).
+- A script section that ends mid-sentence (no `.` `!` `?` at the end) runs into the next scene: no
+  `hold`, no lead-in, and `tools/tts.py` speaks both as one take, so the sentence sounds natural.
 - Highlight `on:` phrases resolve to word times; they are pushed back to the end of the zoom-in
   automatically (style rule: no highlights while zooming).

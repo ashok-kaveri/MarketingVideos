@@ -15,6 +15,9 @@ const Accent: React.FC<{ children: React.ReactNode }> = ({ children }) => <span 
 
 export const Hook: React.FC<{ carrier: Carrier }> = ({ carrier }) => {
   const frame = useCurrentFrame();
+  const { width, height } = useVideoConfig();
+  const M = 70; // safe margin, px
+  const bubbleW = (t: string) => t.length * 34 * 0.56 + 60 + 24; // text + padding + rotation slack
   const spots = [[-2, 6], [50, 4], [30, 22], [72, 14], [8, 46], [62, 40], [20, 72], [58, 70]];
   return (
     <div style={{ position: 'absolute', inset: 0, fontFamily: font, overflow: 'hidden' }}>
@@ -26,7 +29,7 @@ export const Hook: React.FC<{ carrier: Carrier }> = ({ carrier }) => {
         const light = i % 3 === 1;
         return (
           <div key={i} style={{
-            position: 'absolute', left: `${x}%`, top: `${y}%`, transform: `translateY(${drift}px) rotate(${(i % 2 ? 1 : -1) * 4}deg) scale(${0.9 + 0.1 * p})`, opacity: p,
+            position: 'absolute', left: Math.min(Math.max((x / 100) * width, M), width - M - bubbleW(b)), top: Math.min(Math.max((y / 100) * height, M), height - M - 80), transform: `translateY(${drift}px) rotate(${(i % 2 ? 1 : -1) * 4}deg) scale(${0.9 + 0.1 * p})`, opacity: p,
             padding: '16px 30px', borderRadius: 40, fontSize: 34, fontWeight: 500, whiteSpace: 'nowrap',
             background: light ? color.accentDim : '#2c3e66', color: '#fff', boxShadow: '0 12px 30px rgba(15,30,63,0.25)',
           }}>{b}</div>

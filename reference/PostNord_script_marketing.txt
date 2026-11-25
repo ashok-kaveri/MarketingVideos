@@ -1,0 +1,28 @@
+In this video, I'll show you how to automate your PostNord shipping on Shopify, from generating shipping labels and adding services like Service Point, insurance, and returns, to scheduling pickups and tracking orders, all from one app.
+
+First, install the PH MultiCarrier Shipping Label app from the Shopify App Store. Once it's installed, the app automatically sets your Shopify store address as your shipping origin, and you can edit this address or add more shipping locations whenever you need to. With that done, let's connect your PostNord account.
+
+Go to the Carriers tab in the app's main menu, select PostNord, and click Add Account. Enter your PostNord Customer Number and API key, then click Save. A confirmation message will appear, letting you know your PostNord account is now connected to the app.
+
+Before you print your first label, there are a few essentials to set up, starting with packaging. If you ship light items, the weight-based option generates labels using each product's weight. If you ship bulkier boxes, the box-based option takes both weight and dimensions into account, so every label reflects exactly what you're sending. The app offers several other packaging options as well, so you can choose the one that suits your store best. You can add product weight and dimensions in the app's Products section, and if any product is missing these details, the app uses default values so your labels keep generating without interruption.
+
+Next, head to the PostNord Carrier details and choose the shipping services you want to offer, whether that's domestic parcels, express deliveries, or cross-border shipments. The app also supports PostNord additional services such as Service Point, insurance, Confirmation on Delivery, and more, along with registered mail through PostNord Rek and its additional options.
+
+With everything configured, let's generate your first PostNord shipping label. Open an order and review the shipping address, packaging info, selected service, and other details. If a particular order needs extra services, click Add PostNord Special Services from the order grid and select the ones you need. When everything looks right, click Generate Label, then open the Print Documents dropdown and select Label to print it.
+
+If something needs changing before you generate the label, you can edit the shipping address from the order's Recipient section and update the box, weight, or dimensions from the packaging block. Once your changes are saved, generate the label the same way.
+
+When you have several orders ready, simply select them all, click Generate Labels, and print everything at once.
+
+Returns are just as simple. You can generate a return label directly from the order, giving your customer a ready-to-use label and making returns as smooth as your outbound shipments.
+For international orders, start by adding customs information to your products so your declarations are filled in accurately. There are three key details: the HS code, the country of manufacture, and the product description. You can enter these product by product, or export a CSV, update everything in bulk, and import it back.
+
+Then, in the print settings, enable the customs documents you need. The app supports CN22 for low-value shipments and CN23 for higher-value or commercial goods. If your CN23 needs additional details, such as postal charges, you can add them from the same Add PostNord Special Services option on the order grid. Now, when you generate the label as usual, the app creates the customs form along with it for smooth clearance.
+
+Once your labels are printed and attached to your packages, go to the Orders tab, select the orders ready for pickup, and click Request Pickup. PostNord will collect the packages from your location, and you can check the pickup status anytime in the Pickup tab. If you already have regular pickups arranged with PostNord, you can skip this step.
+
+After your packages are picked up, mark the orders as fulfilled. The tracking details sync automatically to your Shopify orders, and your customers receive an email with their tracking number so they can follow their shipments. You can also keep an eye on every shipment from the app's built-in tracking dashboard.
+
+And that's how you can automate your PostNord shipping on Shopify with the PH MultiCarrier Shipping Label app. Start your free trial today and simplify your shipping and fulfilment process.
+
+If you need help setting up the app or would like a personalised onboarding session, just reach out to our support team at www.pluginhive.com/support. We'll be happy to assist you.

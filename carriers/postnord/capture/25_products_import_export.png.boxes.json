@@ -1,0 +1,20 @@
+{
+ "image": {
+  "w": 2880,
+  "h": 1552
+ },
+ "boxes": {
+  "products.import_export": [
+   1926,
+   180,
+   514,
+   60
+  ],
+  "products.toolbar": [
+   1600,
+   170,
+   1200,
+   80
+  ]
+ }
+}
