@@ -13,6 +13,18 @@ const centre: React.CSSProperties = { position: 'absolute', inset: 0, display: '
 /** Emphasise the carrier name: "Automate your [UPS shipping] on Shopify" */
 const Accent: React.FC<{ children: React.ReactNode }> = ({ children }) => <span style={{ color: color.accent }}>{children}</span>;
 
+/** "UPS" -> "UPS shipping"; a name that already says it ("Amazon Shipping") is used as is. */
+const shippingPhrase = (name: string) => (/\bshipping$/i.test(name.trim()) ? name.trim() : `${name} shipping`);
+
+/** Accent the first of these phrases found in `line` (case-insensitive); the line unchanged if none. */
+const AccentIn: React.FC<{ line: string; phrases: string[] }> = ({ line, phrases }) => {
+  for (const p of phrases) {
+    const i = line.toLowerCase().indexOf(p.toLowerCase());
+    if (i >= 0) return <>{line.slice(0, i)}<Accent>{line.slice(i, i + p.length)}</Accent>{line.slice(i + p.length)}</>;
+  }
+  return <>{line}</>;
+};
+
 export const Hook: React.FC<{ carrier: Carrier }> = ({ carrier }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
@@ -44,7 +56,7 @@ export const Title: React.FC<{ carrier: Carrier; assets: Assets }> = ({ carrier,
   return (
     <div style={centre}>
       <div style={{ position: 'absolute', top: 140, fontSize: 68, fontWeight: 600, color: color.text, ...fadeUp(frame, 0) }}>
-        Automate your <Accent>{carrier.name} shipping</Accent> on Shopify
+        Automate your <Accent>{shippingPhrase(carrier.name)}</Accent> on Shopify
       </div>
       <div style={{ ...fadeUp(frame, 12), background: '#fff', borderRadius: 999, padding: 22 }}>
         <AppIcon src={assets.appIcon} size={140} />
@@ -96,11 +108,10 @@ export const Statement: React.FC<{ text: string }> = ({ text }) => {
 
 export const Recap: React.FC<{ carrier: Carrier }> = ({ carrier }) => {
   const frame = useCurrentFrame();
-  const [before, after] = carrier.recapLine.split(`${carrier.name} shipping`);
   return (
     <div style={centre}>
       <div style={{ fontSize: 76, fontWeight: 600, color: color.text, ...fadeUp(frame, 0) }}>
-        {before}<Accent>{carrier.name} shipping</Accent>{after}
+        <AccentIn line={carrier.recapLine} phrases={[shippingPhrase(carrier.name), carrier.name]} />
       </div>
       <div style={{ width: interpolate(frame, [10, 50], [0, 1000], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }), height: 3, background: `linear-gradient(90deg, ${color.accent}, rgba(0,211,232,0))`, marginTop: 50 }} />
     </div>

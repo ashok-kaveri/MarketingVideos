@@ -1,0 +1,16 @@
+# Pipeline sample of an Amazon Shipping video (QA store). Brand data as carriers/ups-sample/carrier.yaml.
+code: amazon-sample
+name: Amazon Shipping
+chapters:
+  - Print Amazon Shipping labels
+  - Fulfil & track orders
+hook_bubbles:
+  - Printing labels one by one…
+  - Copy-pasting tracking numbers…
+  - Where's my package?
+  - Did my customer get the tracking email?
+title_chips: [Labels in bulk, Tracking]
+recap_line: "Your Amazon Shipping, automated."
+app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
+support_url: www.pluginhive.com/support
+voice: { provider: kokoro, voice_id: af_heart }

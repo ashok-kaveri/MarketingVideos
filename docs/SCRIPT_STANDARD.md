@@ -3,8 +3,7 @@
 ## Skeleton (fixed for every carrier)
 | Block | Purpose | Target length |
 |---|---|---|
-| Hook | 5–7 pain-point bubbles, no narration or one line | 6 s |
-| Intro | "In this video, I'll show you how to automate your <Carrier> shipping on Shopify, from … — all from one app." | 12 s |
+| Intro | "In this video, I'll show you how to automate your <Carrier> shipping on Shopify, from … — all from one app." The video **starts here** (no hook, REVIEW_LESSONS #21). List the 2–3 main features only (#15). | 12 s |
 | 01 Install the app | install, origin address auto-set, edit / add locations | 25 s |
 | 02 Connect your <Carrier> account | Carriers tab → <Carrier> → Add Account → carrier's own registration | 30–60 s |
 | 03 Set up live <Carrier> rates | packaging → carrier boxes → product dims → defaults → services (rates + labels) → carrier extras → insurance/signature → checkout demo | 90–120 s |
@@ -25,6 +24,15 @@ proof (e.g. PostNord `getRates` exists but returns the cart total, so there are 
 must confirm it. The six-chapter skeleton is a maximum: drop chapters the app does not support
 (PostNord has no rates, pickup or manifest, so it has 5 chapters).
 
+## The screen matches the words (REVIEW_LESSONS §1)
+Write each line against the capture it plays over, not from memory:
+- Name UI blocks in the order they appear on screen; each named block gets a highlight (#24).
+- Say exactly what the clip clicks ("select **All**" if the clip picks All) (#26).
+- Describe what is on *that* screen (#17); if the words and the screen disagree, reorder the sentence (#6).
+- Keep the first label flow simple; extras (special services, customs) get their own scenes or a short (#39).
+- After the label, show the flow the merchant uses next (e.g. **Generate Label & Fulfil** on the order summary) (#40).
+- Currency, units and place names match the carrier's market (`carrier.yaml market:`) (#18, #34).
+
 ## Voice and tone
 - Second person, present tense, friendly-confident. "You can…", "Just select…".
 - One idea per sentence; ≤ 22 words per sentence.
@@ -33,7 +41,8 @@ must confirm it. The six-chapter skeleton is a maximum: drop chapters the app do
   Each of these gets a statement card.
 - Carrier-specific differentiators go in chapter 03/04 (e.g. UPS SurePost/Ground Saver and negotiated
   rates; FedEx One Rate/HAL/dry ice; DHL paperless trade). Source them from the Domain Expert docs.
-- Product name: "PH MultiCarrier Shipping Label app". Carrier names in their official form
+- Product name: "PH MultiCarrier Shipping Label app".
+- Brand words are spoken the carrier's way: add them to `carrier.yaml say:` (e.g. `say: { "PostNord": "Postnord" }`) (#1). Carrier names in their official form
   ("UPS Ground Saver, formerly known as SurePost").
 - Close: "That's how you can automate your <Carrier> shipping on Shopify with the PH MultiCarrier
   Shipping Label app. Start your free trial today…" + support line `www.pluginhive.com/support`.

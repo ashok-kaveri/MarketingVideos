@@ -8,6 +8,7 @@ chapters:
   - Print <CARRIER> shipping labels
   - Schedule <CARRIER> pickups
   - Fulfil & track orders
+# hook_bubbles are only used if shots.yaml has a hook scene (off by default, REVIEW_LESSONS #21)
 hook_bubbles:
   - Which <CARRIER> rate do I charge?
   - Printing labels one by one…
@@ -21,4 +22,10 @@ title_chips: [Real-time rates, Labels in bulk, Pickups, Tracking]
 recap_line: "Your <CARRIER> shipping, automated."
 app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659, developer: PluginHive }
 support_url: www.pluginhive.com/support
-voice: { provider: TBD, voice_id: TBD }
+voice: { provider: kokoro, voice_id: af_heart }
+# How brand words are SPOKEN (voice only; script and screen keep the written form). REVIEW_LESSONS #1.
+say: { "<CARRIER>": "<CARRIER>" }
+# The demo store must match the carrier's market: currency, weight/dimension units, origin address
+# (REVIEW_LESSONS #18, #34). Capture on a store set up this way; painting a symbol over another (PostNord "kr")
+# is a last resort that a reviewer signs off.
+market: { country: CHANGE_ME, currency: CHANGE_ME, units: "kg/cm" }

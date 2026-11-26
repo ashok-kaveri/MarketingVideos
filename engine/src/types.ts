@@ -31,6 +31,8 @@ export interface Scene {
   duration: number;       // frames
   chapter?: number;
   shopifyLogo?: boolean;
+  carrierLogo?: boolean;  // carrier.yaml `logo` in the top-right logo row
+  fadeIn?: boolean;       // false = hard cut (screen -> screen: the frame stays, no dip to the background)
   audio?: string;         // path under public/
   audioFrom?: number;     // frame the narration starts at (the scene's lead-in)
   text?: string;
@@ -44,6 +46,7 @@ export interface Carrier {
   hookBubbles: string[]; titleChips: string[]; recapLine: string;
   appCard: { price: string; rating: string; reviews: number; developer: string };
   supportUrl: string;
+  logo?: string;          // carrier logo under public/ (carrier.yaml `logo`)
 }
 export interface Assets { pluginhiveLogo?: string; shopifyLogo?: string; shopifyBag?: string; appIcon?: string; music?: string }
 export interface VideoProps { carrier: Carrier; scenes: Scene[]; totalFrames: number; assets: Assets; [k: string]: unknown }

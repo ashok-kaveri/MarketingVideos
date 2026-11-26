@@ -10,25 +10,26 @@ const Hex: React.FC<{ size: number; stroke: string }> = ({ size, stroke }) => (
   </svg>
 );
 
-/** PluginHive logo, top-right. Uses brand/logos/pluginhive.png when present, else a text placeholder. */
+/** PluginHive logo. brand/logos/pluginhive.png when present, else a text placeholder: all white on navy
+ *  (review lesson #14), dark on the light hook background. */
 export const PluginHiveLogo: React.FC<{ src?: string; dark?: boolean }> = ({ src, dark }) => (
-  <div style={{ position: 'absolute', right: 48, top: 30, height: 34, display: 'flex', alignItems: 'center', gap: 6 }}>
+  <div style={{ height: 34, display: 'flex', alignItems: 'center', gap: 6 }}>
     {src ? (
       <Img src={staticFile(src)} style={{ height: 34 }} />
     ) : (
       <>
         <Hex size={30} stroke={dark ? color.cardText : color.text} />
         <span style={{ fontFamily: font, fontWeight: 800, fontSize: 21, letterSpacing: 0.5, color: dark ? color.cardText : color.text }}>
-          PLUGIN<span style={{ color: color.accentDim }}>HIVE</span>
+          PLUGINHIVE
         </span>
       </>
     )}
   </div>
 );
 
-/** Shopify logo next to PluginHive's. brand/logos/shopify.png when present, else the bag icon + the name in white. */
+/** Shopify logo. brand/logos/shopify.png when present, else the bag icon + the name in white (lesson #11). */
 export const ShopifyLogo: React.FC<{ src?: string; bag?: string }> = ({ src, bag }) => (
-  <div style={{ position: 'absolute', right: 270, top: 30, height: 34, display: 'flex', alignItems: 'center', gap: 9 }}>
+  <div style={{ height: 34, display: 'flex', alignItems: 'center', gap: 9 }}>
     {src ? (
       <Img src={staticFile(src)} style={{ height: 34 }} />
     ) : (
@@ -37,6 +38,16 @@ export const ShopifyLogo: React.FC<{ src?: string; bag?: string }> = ({ src, bag
         <span style={{ fontFamily: font, fontWeight: 700, fontSize: 23, letterSpacing: -0.2, color: color.text }}>Shopify</span>
       </>
     )}
+  </div>
+);
+
+/** Top-right logo row: [carrier] [Shopify] [PluginHive]. PluginHive is on every scene; the others where
+ *  the scene asks for them (build-props: title + closing cards by default). */
+export const LogoRow: React.FC<{ pluginhive?: string; dark?: boolean; shopify?: { src?: string; bag?: string }; carrier?: string }> = ({ pluginhive, dark, shopify, carrier }) => (
+  <div style={{ position: 'absolute', right: 48, top: 30, height: 34, display: 'flex', alignItems: 'center', gap: 30 }}>
+    {carrier && <Img src={staticFile(carrier)} style={{ height: 34, maxWidth: 220, objectFit: 'contain' }} />}
+    {shopify && <ShopifyLogo src={shopify.src} bag={shopify.bag} />}
+    <PluginHiveLogo src={pluginhive} dark={dark} />
   </div>
 );
 

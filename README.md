@@ -22,3 +22,4 @@ PH MultiCarrier Shipping Label app.
 | PostNord | ✅ | 📝 v3 (marketing script + fixes) — marketing review | ✅ | ⚠️ marketing raw files, QA app (name patched) | ✅ Kokoro af_heart | draft_v1 (~5:46) | — |
 | UPS (reference, done by marketing) | ✅ | ✅ (marketing) | ✅ | ⏳ raw files needed | ⏳ voice TBD | layout preview ✅ | — |
 | UPS sample (pipeline demo, QA store) | ✅ | ✅ sample (approved UPS lines) | ✅ | ✅ automated 4K (capture/flows/ups-sample.flow.ts) | ✅ Kokoro af_heart | draft_v2 (1:29) | — |
+| Amazon Shipping sample (pipeline demo, QA store) | ✅ (KB-backed) | ✅ sample | ✅ | ✅ automated 4K (shared labels tour) | ✅ Kokoro af_heart | draft_v2 (1:27) | — |

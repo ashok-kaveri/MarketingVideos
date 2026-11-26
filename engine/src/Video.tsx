@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame } from 'remotion';
 import { Background } from './components/Background';
-import { ChapterPill, PluginHiveLogo, ShopifyLogo } from './components/Chrome';
+import { ChapterPill, LogoRow } from './components/Chrome';
 import { ScreenBlock } from './components/ScreenBlock';
 import { AppCard, CalloutCard, ChapterCard, Hook, Recap, Statement, SupportCard, Title } from './scenes/Cards';
 import { color, font, FRAME, motion } from './theme';
@@ -60,7 +60,7 @@ const SceneBody: React.FC<{ scene: Scene; props: VideoProps; prev?: Scene }> = (
 
 const SceneWrap: React.FC<{ scene: Scene; props: VideoProps }> = ({ scene, props }) => {
   const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [0, motion.sceneFade], [0, 1], { extrapolateRight: 'clamp' });
+  const opacity = scene.fadeIn === false ? 1 : interpolate(frame, [0, motion.sceneFade], [0, 1], { extrapolateRight: 'clamp' });
   const chapterTitle = scene.chapter && scene.type !== 'chapter' ? props.carrier.chapters[scene.chapter - 1] : undefined;
   return (
     <AbsoluteFill>
@@ -69,8 +69,12 @@ const SceneWrap: React.FC<{ scene: Scene; props: VideoProps }> = ({ scene, props
         <SceneBody scene={scene} props={props} />
       </AbsoluteFill>
       {chapterTitle && <ChapterPill n={scene.chapter!} title={chapterTitle} />}
-      <PluginHiveLogo src={props.assets.pluginhiveLogo} dark={scene.type === 'hook'} />
-      {scene.shopifyLogo && <ShopifyLogo src={props.assets.shopifyLogo} bag={props.assets.shopifyBag} />}
+      <LogoRow
+        pluginhive={props.assets.pluginhiveLogo}
+        dark={scene.type === 'hook'}
+        shopify={scene.shopifyLogo ? { src: props.assets.shopifyLogo, bag: props.assets.shopifyBag } : undefined}
+        carrier={scene.carrierLogo ? props.carrier.logo : undefined}
+      />
       {scene.audio && (
         <Sequence from={scene.audioFrom ?? 0} layout="none">
           <Audio src={staticFile(scene.audio)} />

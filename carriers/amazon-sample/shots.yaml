@@ -1,0 +1,63 @@
+# Amazon Shipping sample — shot list. Spec: docs/SHOT_SPEC.md. Narration: script.md.
+# Captures: capture/flows/amazon-sample.flow.ts (shared labels tour) on the QA store (4K, demo orders by API). The QA app name +
+# icon are boxed at capture (qa.title / qa.sidebar) and painted over here; a production-store capture drops these.
+
+x-qa: &qa
+  - { target: [466, 36, 560, 52], text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 27, weight: 600, pad_x: 4 }   # title bar: fixed spot, icon + name
+  - { target: qa.sidebar?, text: PH MultiCarrier Sh…, icon: true, bg: "#303030", color: "#e3e3e3", size: 26, weight: 550, pad_x: 8 }
+
+scenes:
+  - { id: hook, type: hook }
+  - { id: intro, type: title, shopify_logo: true }
+
+  # ── 01 Print UPS shipping labels ─────────────────────────────────────
+  - id: single-label
+    chapter: 1
+    type: screen
+    source: 10_single_label.mp4
+    video:
+      cut: [[1.0, 11.0], [12.9, 147.4]]   # page load; label retry after the store's demo product had no dimensions
+      sync:
+        - { src: 0.4, on: "Open an order" }
+        - { src: 12.69, on: "click Generate Label" }
+    patches:
+      - { target: [466, 36, 560, 52], text: PH MultiCarrier Shipping Label, icon: true, bg: "#ffffff", color: "#303030", size: 27, weight: 600, pad_x: 4 }
+      - { target: qa.sidebar?, text: PH MultiCarrier Sh…, icon: true, bg: "#303030", color: "#e3e3e3", size: 26, weight: 550, pad_x: 8 }
+      - { target: amz.dims_error, bg: "#ffffff" }   # QA store demo product has no dimensions
+    highlights:
+      - { target: order.generate, on: "click Generate Label" }
+  - { id: bulk-card, chapter: 1, type: statement, text: "Shipping in bulk?" }
+  - id: bulk-labels
+    chapter: 1
+    type: screen
+    source: 20_bulk_labels.mp4
+    video:
+      sync:
+        - { src: 0.3, on: "select multiple orders" }
+        - { src: 3.14, on: "click Generate Labels" }
+        - { src: 11.88, on: "all of them at once" }
+    patches: *qa
+    highlights:
+      - { target: bulk.generate, on: "click Generate Labels", until: "and the labels" }
+
+  # ── 02 Fulfil & track orders ─────────────────────────────────────────
+  - id: fulfil
+    chapter: 2
+    type: screen
+    source: 30_fulfil.mp4
+    video:
+      sync: [{ src: 1.39, on: "click Mark as Fulfilled" }]
+    patches: *qa
+    highlights:
+      - { target: batch.fulfil, on: "Mark as Fulfilled" }
+  - id: tracking-dashboard
+    chapter: 2
+    type: screen
+    source: 40_tracking_dashboard.png
+    patches: *qa
+    highlights: [{ target: tracking.header, on: "Tracking tab" }]
+
+  # ── Outro ────────────────────────────────────────────────────────────
+  - { id: recap, type: recap, shopify_logo: true }
+  - { id: app-card, type: app_card }
+  - { id: support-card, type: support_card }

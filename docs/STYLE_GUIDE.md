@@ -31,14 +31,17 @@ All sizes are in the 1920x1080 design space; the final render doubles them (4K).
 
 ## Fixed chrome on every screen scene
 - Chapter pill top-left at (48, 36): `( 03 ) Set up live UPS rates`.
-- PluginHive logo top-right, 34 px tall, right edge at 1872.
+- Logo row top-right (right edge at 1872, 34 px tall): `[carrier] [Shopify] [PluginHive]`.
+  - PluginHive on every scene, all white on navy (REVIEW_LESSONS #14).
+  - Shopify (bag + white "Shopify", never green text) and the carrier logo (`carrier.yaml logo`) on the title card
+    and the closing cards (recap, app card, support card) by default; on other scenes only with
+    `shopify_logo: true` / `carrier_logo: true` (#11, #14, #33, #38).
 - Screen frame: x 102–1818, y 104–1026, radius 12, soft shadow; media is `contain`-fitted inside.
-- Shopify logo: only on scenes whose narration mentions Shopify (`shopify_logo: true` in shots.yaml).
 
 ## Motion
 | Move | Timing |
 |---|---|
-| Scene cut | 8-frame cross-fade (0.27 s) |
+| Scene cut | 8-frame fade in from the background; **hard cut** between two consecutive app screens (no flicker, REVIEW_LESSONS #37) |
 | Zoom in / out | 18 frames (0.6 s), ease-in-out cubic |
 | Zoom scale | auto-fit target to 70% of frame, clamped 1.3×–2.6× |
 | Highlight appear | 8 frames: opacity 0→1, scale 1.04→1 |
@@ -49,6 +52,8 @@ All sizes are in the 1920x1080 design space; the final render doubles them (4K).
 | Chapter card | 2.2 s: number slides in, title fades up |
 
 ## Never
+- An opening hook before the title (the video starts on "In this video", REVIEW_LESSONS #21).
+- Browser chrome (tabs, address bar, bookmarks bar) or OS UI in any capture (#10, #32).
 - Click ripples, label tags, arrows, emojis on UI scenes.
 - Multiple highlight colours.
 - Highlights while zooming.

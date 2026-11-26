@@ -8,6 +8,8 @@ Produces one "Set up <Carrier> shipping on Shopify" marketing video per carrier 
 - Narration rules: [docs/SCRIPT_STANDARD.md](docs/SCRIPT_STANDARD.md)
 - `shots.yaml` / `carrier.yaml` schema: [docs/SHOT_SPEC.md](docs/SHOT_SPEC.md)
 - Release gate: [docs/QA_CHECKLIST.md](docs/QA_CHECKLIST.md)
+- Review lessons (every marketing/product note so far, as rules): [docs/REVIEW_LESSONS.md](docs/REVIEW_LESSONS.md).
+  Read it before writing a script or a capture flow; add new review notes there, not only in a CHANGELOG.
 - Carrier facts: the MCSL Domain Expert repo (`~/Documents/Pluginhive/DomainExperts/MCSLDomainExpert/docs/MCSL_CARRIER_*`,
   `~/Documents/Pluginhive/MCSL/mcsl-wiki`). Never claim a feature for a carrier unless it is listed there.
 - Capture: [capture/README.md](capture/README.md). Reuses the QA repo

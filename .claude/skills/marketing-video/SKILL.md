@@ -15,6 +15,9 @@ Rules that always apply: [CLAUDE.md](../../../CLAUDE.md), [docs/SCRIPT_STANDARD.
 [docs/SHOT_SPEC.md](../../../docs/SHOT_SPEC.md), [docs/STYLE_GUIDE.md](../../../docs/STYLE_GUIDE.md),
 [docs/QA_CHECKLIST.md](../../../docs/QA_CHECKLIST.md), [capture/README.md](../../../capture/README.md).
 Follow `carriers/postnord/` as the worked example of every file.
+**Read [docs/REVIEW_LESSONS.md](../../../docs/REVIEW_LESSONS.md) first**: 40 review notes from PostNord turned into
+rules. Most are automatic (logos, hard cuts, no hook, Sidekick); the rest are rules for the script, the shot list
+and the capture. Breaking one means another review round.
 
 ## Where commands run
 - `capture/` flows open a browser and may need the user to type a Shopify code: run them in the
@@ -43,7 +46,7 @@ Follow `carriers/postnord/` as the worked example of every file.
    `EXPLORE="Carriers;Carriers><Carrier>;Products;Settings;..." npx playwright test explore`.
    Read `carriers/<c>/review/explore/*.aria.yaml` (and the pngs) — button, tab, field and service
    names in the script must match these exactly (Title Case as on screen).
-3. **Write** `carrier.yaml`, `script.md` (one `## <scene-id>` per scene, SCRIPT_STANDARD voice, chapters the
+3. **Write** `carrier.yaml` (with `say:` for brand words and `market:`; add `brand/logos/<code>.png`), `script.md` (one `## <scene-id>` per scene, SCRIPT_STANDARD voice, chapters the
    app does not support for this carrier are dropped), and `shots.yaml` (one scene per script section;
    `source:` file names you will capture in stage 2, `zoom`/`highlights` box names you will record).
 4. **Preview**: `~/.cache/mcsl-tts/venv/bin/python tools/tts.py <c>`, then
@@ -71,10 +74,13 @@ Follow `carriers/postnord/` as the worked example of every file.
    the user to record by hand (QuickTime, 4K), with the file name `shots.yaml` expects.
 5. **Sync clips to the voice**: fill `video.sync` anchors in `shots.yaml` from the `⏱` marks the
    capture printed (SHOT_SPEC "Video sources").
-6. **Build**: `cd engine && npm run props -- <c>` (strict — fix every missing file/box), stills
+6. **Self-review against REVIEW_LESSONS** before anyone else sees it: words vs screen at every highlight,
+   confirmation toasts readable, no error text, no browser chrome, Delivered status, market currency.
+   Fix in `shots.yaml` (cut, sync, highlights, patches) or re-capture.
+7. **Build**: `cd engine && npm run props -- <c>` (strict — fix every missing file/box), stills
    (`npm run stills -- <c> <frames…>`) and look at `review/stills/sheet.jpg`, then `npm run draft -- <c>`.
-7. **QA**: `python3 tools/qa_check.py <c>` + docs/QA_CHECKLIST.md. Fix in the yaml / flows, never by
+8. **QA**: `python3 tools/qa_check.py <c>` + docs/QA_CHECKLIST.md. Fix in the yaml / flows, never by
    hand-tuning engine code for one carrier (a new need → a generic engine option).
-8. Bump `CHANGELOG.md` (every render), update README status. Report: draft path, what was captured,
+9. Bump `CHANGELOG.md` (every render), update README status. Report: draft path, what was captured,
    anything still manual, QA results. The 4K final (`npm run final -- <c>`) only after marketing
    signs off the draft.

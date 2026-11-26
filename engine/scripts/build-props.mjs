@@ -65,6 +65,10 @@ link(path.join(ROOT, 'brand'), path.join(pub, 'brand'));
 link(CDIR, path.join(pub, 'carriers', code));
 
 const asset = (rel) => (fs.existsSync(path.join(ROOT, rel)) ? rel : undefined);
+const carrierLogo = carrierY.logo ? asset(carrierY.logo) : undefined;
+const LOGO_CARDS = new Set(['title', 'recap', 'app_card', 'support_card']);
+const FRAMED = new Set(['screen', 'split', 'callout']);
+const missingLogoScenes = [];
 const assets = {
   pluginhiveLogo: asset('brand/logos/pluginhive.png'),
   shopifyLogo: asset('brand/logos/shopify.png'),
@@ -303,7 +307,18 @@ for (const s of shots) {
   const base = Math.max(voFrames, sec(SILENT[s.type] ?? 0), sec(1.5));
   const sceneFrames = (media) => Math.max(base, media?.videoFrames ?? 0);
 
-  const scene = { id: s.id, type: s.type, chapter: s.chapter, shopifyLogo: !!s.shopify_logo, audio: nar.audio, audioFrom: sec(nar.lead), text: s.text, kind: s.kind, from: cursor };
+  // Logos (review lessons #14, #33, #38): Shopify + carrier logo on the title card and the closing cards by
+  // default; on any other scene only when shots.yaml asks (shopify_logo / carrier_logo: true).
+  const brandCard = LOGO_CARDS.has(s.type);
+  const prev = scenes[scenes.length - 1];
+  const scene = {
+    id: s.id, type: s.type, chapter: s.chapter,
+    shopifyLogo: s.shopify_logo ?? brandCard, carrierLogo: s.carrier_logo ?? brandCard,
+    // No dip to the background between two app screens (review lesson #37, "flicker"): hard cut instead.
+    fadeIn: !(FRAMED.has(s.type) && prev && FRAMED.has(prev.type)),
+    audio: nar.audio, audioFrom: sec(nar.lead), text: s.text, kind: s.kind, from: cursor,
+  };
+  if (scene.carrierLogo && !carrierLogo) missingLogoScenes.push(s.id);
   if (s.type === 'screen') {
     if (!s.source) err(`${s.id}: screen scene needs "source"`);
     else scene.block = buildBlock(s, s.id, nar, sceneFrames);
@@ -336,9 +351,10 @@ for (const s of shots) {
 const carrier = {
   code, name: carrierY.name, chapters: carrierY.chapters, hookBubbles: carrierY.hook_bubbles ?? [],
   titleChips: carrierY.title_chips ?? [], recapLine: carrierY.recap_line ?? `Your ${carrierY.name} shipping, automated.`,
-  appCard: { developer: 'PluginHive', ...carrierY.app_card }, supportUrl: carrierY.support_url,
+  appCard: { developer: 'PluginHive', ...carrierY.app_card }, supportUrl: carrierY.support_url, logo: carrierLogo,
 };
 
+if (missingLogoScenes.length) warn(`carrier logo missing (carrier.yaml "logo": ${carrierY.logo ?? 'not set'}) — wanted on ${missingLogoScenes.join(', ')}; add brand/logos/<carrier>.png`);
 for (const w of warnings) console.warn(`warn  ${w}`);
 if (errors.length) {
   for (const e of errors) console.error(`ERROR ${e}`);

@@ -1,4 +1,5 @@
-# Copy scene blocks from carriers/ups/shots.yaml and adapt. Spec: docs/SHOT_SPEC.md
+# Copy scene blocks from carriers/postnord/shots.yaml and adapt. Spec: docs/SHOT_SPEC.md
+# Review lessons (docs/REVIEW_LESSONS.md) are built in: no opening hook (start on "In this video", #21);
+# Shopify + carrier logos come on the title and closing cards automatically (#14, #33, #38).
 scenes:
-  - { id: hook, type: hook }
-  - { id: intro, type: title, shopify_logo: true }
+  - { id: intro, type: title }

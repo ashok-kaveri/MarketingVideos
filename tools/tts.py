@@ -127,6 +127,15 @@ def main():
     for f in os.listdir(adir):  # older runs wrote raw audio straight to audio/<id>.wav
         if f.endswith('.wav') and not os.path.exists(os.path.join(rdir, f)):
             os.replace(os.path.join(adir, f), os.path.join(rdir, f))
+    # Per-carrier pronunciations (carrier.yaml `say: { "PostNord": "Postnord" }`), checked before the
+    # shared SAY list (docs/REVIEW_LESSONS.md #1: brand names spoken as one word, as the carrier says them).
+    try:
+        import yaml
+        with open(os.path.join(cdir, 'carrier.yaml')) as f:
+            extra = (yaml.safe_load(f) or {}).get('say') or {}
+        SAY[:0] = [(r'\b' + re.escape(k) + r'\b', v) for k, v in extra.items()]
+    except FileNotFoundError:
+        pass
     script = parse_script(os.path.join(cdir, 'script.md'))
     only = set(filter(None, args.only.split(',')))
 

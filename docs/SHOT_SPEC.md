@@ -18,8 +18,11 @@ chapters:                      # titles shown on chapter cards and the chapter p
 hook_bubbles: ["Which UPS rate do I charge?", "Printing labels one by one…"]
 app_card: { price: "From $9/month. Free trial available.", rating: "4.9", reviews: 659 }
 support_url: www.pluginhive.com/support
-voice: { provider: elevenlabs, voice_id: TBD }
+voice: { provider: kokoro, voice_id: af_heart }
+say: { "PostNord": "Postnord" }   # how brand words are spoken (tools/tts.py), REVIEW_LESSONS #1
+market: { country: SE, currency: SEK, units: "kg/cm" }   # what the demo store must show (#18, #34)
 ```
+`logo` is shown in the top-right logo row on the title and closing cards (props warns if the file is missing).
 
 ## `shots.yaml`
 ```yaml
@@ -34,14 +37,15 @@ scenes:
         on: "shipping origin"   # appear when this phrase is spoken (default: when zoom holds)
         until: scene_end        # or another phrase; default scene_end
     blur: [form.phone, form.address]
-    shopify_logo: false
+    shopify_logo: false         # default: true on title/recap/app_card/support_card, false elsewhere
+    carrier_logo: false         # same defaults; set true on e.g. the connect-account screen (REVIEW_LESSONS #33)
     hold: 0.6                   # extra seconds after narration ends (default 0.6)
 ```
 
 ### Scene types
 | type | needs | notes |
 |---|---|---|
-| `hook` | — | pain-point bubbles from `carrier.yaml` |
+| `hook` | — | pain-point bubbles from `carrier.yaml`. Off by default: videos start on the title (REVIEW_LESSONS #21) |
 | `title` | — | "Automate your <Carrier> shipping on Shopify" + app icon |
 | `screen` | `source` (png/jpg/mov/mp4) | the workhorse |
 | `split` | `left`, `right` (each a screen-like block with `source`, `caption`, `zoom`, `highlights`) | checkout vs label printing |
